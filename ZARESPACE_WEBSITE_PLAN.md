@@ -10,6 +10,11 @@
   - **Pricing** - List of all pricing packages (dedicated page)
   - **Resources** - List of all resources used/tools (dedicated page)
 - CTA button
+- **Dynamic Header Behavior**:
+  - **Initial State**: Transparent background, overlays hero content
+  - **On Scroll**: Transforms to floating header with background
+  - **Floating Style**: Rounded corners, shadow, not attached to screen edges
+  - **Smooth Animation**: Transition between states using Motion library
 
 ### 2. Hero Section
 - Headline: "Empowering Businesses, Digitally."
@@ -70,6 +75,19 @@
 - Primary color: #b6ff1c (lime green)
 - Inter font family
 - Responsive design for mobile/tablet/desktop
+
+## Component Architecture
+- **Header Component** (`src/components/Header.tsx`):
+  - Reusable across all pages
+  - Contains dynamic scroll behavior logic
+  - Handles navigation state and mobile menu
+  - Imported in layout.tsx for global usage
+
+- **Footer Component** (`src/components/Footer.tsx`):
+  - Reusable across all pages
+  - Contains Magic UI Scroll Based Velocity component
+  - Consistent across all page layouts
+  - Imported in layout.tsx for global usage
 
 ## Status
 - ✅ Foundation setup complete
@@ -160,3 +178,81 @@ ite Architecture & Navigation Structure
 - Free resources for clients
 - Partner integrations
 - Knowledge base
+
+## Header Implementation Details
+
+### Dynamic Header Behavior
+- **Transparent State** (scroll position: 0):
+  - Fully transparent background
+  - White/light text for contrast against hero
+  - Fixed position at top of viewport
+  - No shadow or border
+
+- **Floating State** (scroll position: >50px):
+  - Semi-transparent background with blur effect
+  - Rounded corners (border-radius: 12-16px)
+  - Subtle shadow for depth
+  - Margin from screen edges (not full width)
+  - Smooth color transition for text/logo
+
+### Technical Implementation
+- **Scroll Detection**: Use `useEffect` with scroll event listener
+- **State Management**: React state to track scroll position
+- **Animation**: Motion library for smooth transitions
+- **Backdrop Filter**: CSS `backdrop-filter: blur()` for modern glass effect
+- **Z-index**: High z-index to stay above all content
+
+### Visual Specifications
+- **Floating Header Styling**:
+  - Background: `bg-background/80 backdrop-blur-md`
+  - Border radius: `rounded-2xl`
+  - Shadow: `shadow-lg`
+  - Margin: `mx-4 md:mx-8` (responsive spacing from edges)
+  - Max width: `max-w-7xl mx-auto` (centered with max width)
+
+### Responsive Behavior
+- **Mobile**: Smaller margins, compact spacing
+- **Tablet/Desktop**: Larger margins, full navigation visible
+- **Logo**: Always visible, company name shows on larger screens
+- **Navigation**: Hamburger menu on mobile, full nav on desktop## File St
+ructure for Components
+
+### Global Layout Components
+```
+src/
+├── components/
+│   ├── Header.tsx          # Dynamic header with scroll behavior
+│   ├── Footer.tsx          # Footer with Magic UI component
+│   └── ui/                 # shadcn/ui components
+│       ├── button.tsx
+│       ├── card.tsx
+│       └── ...
+├── app/
+│   ├── layout.tsx          # Root layout with Header/Footer
+│   ├── page.tsx            # Home page
+│   ├── services/
+│   │   └── page.tsx        # Services page
+│   ├── projects/
+│   │   └── page.tsx        # Projects page
+│   ├── pricing/
+│   │   └── page.tsx        # Pricing page
+│   └── resources/
+│       └── page.tsx        # Resources page
+```
+
+### Layout Implementation Strategy
+- **Root Layout** (`layout.tsx`):
+  - Import Header and Footer components
+  - Wrap all pages with consistent layout
+  - Handle global styles and metadata
+
+- **Page-Specific Content**:
+  - Each page focuses only on its unique content
+  - Header and Footer automatically included
+  - Consistent user experience across all pages
+
+### Component Benefits
+- **Maintainability**: Single source of truth for header/footer
+- **Consistency**: Same navigation and footer across all pages
+- **Performance**: Components cached and reused
+- **Development Speed**: No need to recreate header/footer per page
