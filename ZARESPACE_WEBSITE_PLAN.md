@@ -17,12 +17,17 @@
   - **Smooth Animation**: Transition between states using Motion library
 
 ### 2. Hero Section
-- Headline: "Empowering Businesses, Digitally."
-- Visual background options:
-  - Professional video background (subtle, non-distracting)
-  - Animated vector visuals (shooting stars, geometric patterns)
-  - Gradient overlay for text readability
-- Two CTA buttons
+- **Layout**: Split-screen design (text left, visual right)
+- **Headline**: "Empowering Businesses, Digitally."
+- **Subheadline**: Supporting text about digital transformation
+- **Visual Element Options** (right side):
+  - 3D animated sphere/orb with digital particles (similar to reference)
+  - Floating geometric shapes with lime green accents
+  - Abstract digital network visualization
+  - Animated code/data visualization sphere
+- **Background**: Dark gradient with subtle patterns
+- **Two CTA buttons**: Primary and secondary actions
+- **Social Proof**: "Trusted by growing businesses" or client logos when available
 
 ### 3. Services Section
 - 4 main services in grid layout:
@@ -133,8 +138,8 @@
 2. **Video Background**: Professional, subtle motion (low opacity overlay)
 3. **Particle System**: Interactive dots/connections using Motion library
 4. **Gradient Animation**: Dynamic color transitions with your lime green theme
-## Webs
-ite Architecture & Navigation Structure
+
+## Website Architecture & Navigation Structure
 
 ### Main Pages Structure
 1. **Home Page** (/) - Landing page with all 8 sections
@@ -214,8 +219,9 @@ ite Architecture & Navigation Structure
 - **Mobile**: Smaller margins, compact spacing
 - **Tablet/Desktop**: Larger margins, full navigation visible
 - **Logo**: Always visible, company name shows on larger screens
-- **Navigation**: Hamburger menu on mobile, full nav on desktop## File St
-ructure for Components
+- **Navigation**: Hamburger menu on mobile, full nav on desktop
+
+## File Structure for Components
 
 ### Global Layout Components
 ```
@@ -255,4 +261,44 @@ src/
 - **Maintainability**: Single source of truth for header/footer
 - **Consistency**: Same navigation and footer across all pages
 - **Performance**: Components cached and reused
-- **Development Speed**: No need to recreate header/footer per page
+- **Development Speed**: No need to recreate header/footer per page## 
+Hero Section Design Analysis
+
+### What Works from the Reference
+- **Split Layout**: Text on left, visual on right creates perfect balance
+- **Dark Background**: Professional, modern feel that makes content pop
+- **3D Visual Element**: Eye-catching without being distracting
+- **Clear Hierarchy**: Large headline, supporting text, clear CTAs
+- **Social Proof**: Company logos build immediate credibility
+
+### Zarespace Adaptations
+
+#### Visual Element Options (Right Side)
+1. **Digital Transformation Sphere**:
+   - 3D orb with swirling digital elements
+   - Lime green (#b6ff1c) particles and accents
+   - Represents data, connectivity, growth
+
+2. **Service Integration Visual**:
+   - Four interconnected elements representing your services
+   - Web dev (code brackets), Design (palette), Video (play icon), Marketing (graph)
+   - Animated connections between elements
+
+3. **Growth Visualization**:
+   - Abstract representation of business growth
+   - Rising charts, network connections
+   - Particle effects in your brand colors
+
+#### Content Structure
+- **Main Headline**: "Empowering Businesses, Digitally."
+- **Supporting Text**: "We help startups and SMEs transform their digital presence with cutting-edge web development, design, video, and marketing solutions."
+- **CTA Buttons**: 
+  - Primary: "Start Your Project"
+  - Secondary: "View Our Services"
+- **Trust Indicators**: "Helping businesses grow since 2024" or capability highlights
+
+#### Technical Implementation
+- **3D Library**: Three.js or React Three Fiber for 3D elements
+- **Animations**: Motion library for smooth interactions
+- **Responsive**: Visual scales appropriately on mobile
+- **Performance**: Optimized 3D rendering, fallback for low-end devices
