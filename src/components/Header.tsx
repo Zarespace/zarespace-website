@@ -6,6 +6,7 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -57,7 +58,7 @@ export default function Header() {
               className="rounded-full"
             />
             <span className={`hidden md:block font-bold text-xl transition-colors duration-300 ${
-              isScrolled ? "text-foreground" : "text-white"
+              isScrolled ? "text-foreground" : "text-slate-950 dark:text-white"
             }`}>
               Zarespace Digital
             </span>
@@ -70,7 +71,7 @@ export default function Header() {
                 key={link.href}
                 href={link.href}
                 className={`font-medium transition-colors duration-300 hover:text-primary ${
-                  isScrolled ? "text-foreground" : "text-white"
+                  isScrolled ? "text-foreground" : "text-slate-950 dark:text-white"
                 }`}
               >
                 {link.label}
@@ -78,8 +79,9 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* CTA Button & Mobile Menu */}
+          {/* Theme Toggle, CTA Button & Mobile Menu */}
           <div className="flex items-center space-x-4">
+            <ThemeToggle />
             <Button
               className={`hidden sm:flex ${
                 isScrolled
@@ -93,7 +95,7 @@ export default function Header() {
             {/* Mobile Menu Button */}
             <button
               className={`md:hidden p-2 transition-colors duration-300 ${
-                isScrolled ? "text-foreground" : "text-white"
+                isScrolled ? "text-foreground" : "text-slate-950 dark:text-white"
               }`}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
@@ -117,7 +119,7 @@ export default function Header() {
                   key={link.href}
                   href={link.href}
                   className={`font-medium transition-colors duration-300 hover:text-primary ${
-                    isScrolled ? "text-foreground" : "text-white"
+                    isScrolled ? "text-foreground" : "text-slate-950 dark:text-white"
                   }`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
