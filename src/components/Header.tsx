@@ -7,10 +7,17 @@ import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { useTheme } from "next-themes";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const { theme, resolvedTheme } = useTheme();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -51,13 +58,13 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3">
             <Image
-              src="/Logo.png"
+              src={mounted && resolvedTheme === 'dark' ? "/logo_dark.svg" : "/logo_light.svg"}
               alt="Zarespace Digital"
               width={40}
               height={40}
-              className="rounded-full"
+              className="transition-opacity duration-300"
             />
-            <span className={`hidden md:block font-bold text-xl transition-colors duration-300 ${
+            <span className={`hidden md:block font-bold text-xl transition-colors duration-300 font-ttlakes ${
               isScrolled ? "text-foreground" : "text-slate-950 dark:text-white"
             }`}>
               Zarespace Digital

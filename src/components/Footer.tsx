@@ -1,11 +1,21 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { VelocityScroll } from "@/components/magicui/scroll-based-velocity";
+import { useTheme } from "next-themes";
 
 export default function Footer() {
     const currentYear = new Date().getFullYear();
+    const [mounted, setMounted] = useState(false);
+    const { resolvedTheme } = useTheme();
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     const serviceLinks = [
         { href: "/services#web-development", label: "Web Development" },
@@ -43,13 +53,14 @@ export default function Footer() {
                     <div className="lg:col-span-1">
                         <Link href="/" className="flex items-center space-x-3 mb-4">
                             <Image
-                                src="/Logo.png"
+                                src={mounted && resolvedTheme === 'dark' ? "/logo_dark.svg" : "/logo_light.svg"}
                                 alt="Zarespace Digital"
                                 width={40}
                                 height={40}
-                                className="rounded-full"
+                                className="transition-opacity duration-300"
+                                key={resolvedTheme} // Force re-render when theme changes
                             />
-                            <span className="font-bold text-xl text-white">
+                            <span className="font-bold text-xl text-white font-ttlakes">
                                 Zarespace Digital
                             </span>
                         </Link>
