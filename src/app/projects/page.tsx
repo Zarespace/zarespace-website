@@ -1,7 +1,8 @@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink, Github, Globe } from "lucide-react";
+import { ExternalLink, GitBranch, Globe } from "lucide-react";
+import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
 
 interface Project {
   id: string;
@@ -79,7 +80,7 @@ const categories = ["All", "Web Development", "Mobile Development", "AI & Analyt
 
 export default function ProjectsPage() {
   return (
-    <div className="min-h-screen pt-24 px-4">
+    <div className="min-h-screen pt-32 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
         <div className="text-center mb-16">
@@ -109,50 +110,68 @@ export default function ProjectsPage() {
           <h2 className="text-3xl font-semibold mb-8 text-center">Featured Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {projects.filter(p => p.featured).map((project) => (
-              <Card key={project.id} className="group hover:shadow-lg transition-all duration-300 overflow-hidden">
-                <div className="relative h-48 bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-16 h-16 object-contain opacity-60 group-hover:opacity-80 transition-opacity"
-                  />
-                </div>
-                <CardHeader>
-                  <div className="flex items-start justify-between">
-                    <div>
-                      <CardTitle className="text-xl">{project.title}</CardTitle>
-                      <CardDescription className="mt-2">{project.description}</CardDescription>
+              <CardContainer key={project.id} className="inter-var" containerClassName="py-10">
+                <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full h-auto rounded-xl p-6 border">
+                  <CardItem
+                    translateZ="50"
+                    className="text-xl font-bold text-neutral-600 dark:text-white"
+                  >
+                    {project.title}
+                  </CardItem>
+                  <CardItem
+                    as="p"
+                    translateZ="60"
+                    className="text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300"
+                  >
+                    {project.description}
+                  </CardItem>
+                  <CardItem translateZ="100" className="w-full mt-4">
+                    <div className="relative h-48 bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center rounded-xl overflow-hidden">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-16 h-16 object-contain opacity-60 group-hover/card:opacity-80 transition-opacity"
+                      />
                     </div>
+                  </CardItem>
+                  <CardItem translateZ="80" className="mt-4">
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies.slice(0, 3).map((tech) => (
+                        <Badge key={tech} variant="secondary" className="text-xs">
+                          {tech}
+                        </Badge>
+                      ))}
+                      {project.technologies.length > 3 && (
+                        <Badge variant="secondary" className="text-xs">
+                          +{project.technologies.length - 3} more
+                        </Badge>
+                      )}
+                    </div>
+                  </CardItem>
+                  <div className="flex justify-between items-center mt-6">
+                    {project.liveUrl && (
+                      <CardItem translateZ={20} className="px-4 py-2">
+                        <Button size="sm" variant="outline" asChild>
+                          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center">
+                            <Globe className="w-4 h-4 mr-2" />
+                            Live Demo
+                          </a>
+                        </Button>
+                      </CardItem>
+                    )}
+                    {project.githubUrl && (
+                      <CardItem translateZ={20} className="px-4 py-2">
+                        <Button size="sm" variant="outline" asChild>
+                          <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="flex items-center">
+                            <GitBranch className="w-4 h-4 mr-2" />
+                            Code
+                          </a>
+                        </Button>
+                      </CardItem>
+                    )}
                   </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.technologies.map((tech) => (
-                      <Badge key={tech} variant="secondary" className="text-xs">
-                        {tech}
-                      </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-                <CardFooter className="flex gap-2">
-                  {project.liveUrl && (
-                    <Button size="sm" variant="outline" asChild>
-                      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                        <Globe className="w-4 h-4 mr-2" />
-                        Live Demo
-                      </a>
-                    </Button>
-                  )}
-                  {project.githubUrl && (
-                    <Button size="sm" variant="outline" asChild>
-                      <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                        <Github className="w-4 h-4 mr-2" />
-                        Code
-                      </a>
-                    </Button>
-                  )}
-                </CardFooter>
-              </Card>
+                </CardBody>
+              </CardContainer>
             ))}
           </div>
         </div>
@@ -162,51 +181,68 @@ export default function ProjectsPage() {
           <h2 className="text-3xl font-semibold mb-8 text-center">All Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((project) => (
-              <Card key={project.id} className="group hover:shadow-lg transition-all duration-300 overflow-hidden">
-                <div className="relative h-32 bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-12 h-12 object-contain opacity-60 group-hover:opacity-80 transition-opacity"
-                  />
-                </div>
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-lg">{project.title}</CardTitle>
-                  <CardDescription className="text-sm line-clamp-2">{project.description}</CardDescription>
-                </CardHeader>
-                <CardContent className="pb-3">
-                  <div className="flex flex-wrap gap-1">
-                    {project.technologies.slice(0, 3).map((tech) => (
-                      <Badge key={tech} variant="outline" className="text-xs">
-                        {tech}
-                      </Badge>
-                    ))}
-                    {project.technologies.length > 3 && (
-                      <Badge variant="outline" className="text-xs">
-                        +{project.technologies.length - 3} more
-                      </Badge>
+              <CardContainer key={project.id} className="inter-var" containerClassName="py-8">
+                <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full h-auto rounded-xl p-6 border">
+                  <CardItem translateZ="100" className="w-full mb-4">
+                    <div className="relative h-32 bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center rounded-lg overflow-hidden">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-12 h-12 object-contain opacity-60 group-hover/card:opacity-80 transition-opacity"
+                      />
+                    </div>
+                  </CardItem>
+                  <CardItem
+                    translateZ="50"
+                    className="text-lg font-bold text-neutral-600 dark:text-white"
+                  >
+                    {project.title}
+                  </CardItem>
+                  <CardItem
+                    as="p"
+                    translateZ="60"
+                    className="text-neutral-500 text-sm mt-2 dark:text-neutral-300 line-clamp-2"
+                  >
+                    {project.description}
+                  </CardItem>
+                  <CardItem translateZ="70" className="mt-3">
+                    <div className="flex flex-wrap gap-1">
+                      {project.technologies.slice(0, 3).map((tech) => (
+                        <Badge key={tech} variant="outline" className="text-xs">
+                          {tech}
+                        </Badge>
+                      ))}
+                      {project.technologies.length > 3 && (
+                        <Badge variant="outline" className="text-xs">
+                          +{project.technologies.length - 3} more
+                        </Badge>
+                      )}
+                    </div>
+                  </CardItem>
+                  <div className="flex gap-2 mt-4">
+                    {project.liveUrl && (
+                      <CardItem translateZ={20}>
+                        <Button size="sm" variant="ghost" asChild className="text-xs px-3 py-1">
+                          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center">
+                            <ExternalLink className="w-3 h-3 mr-1" />
+                            Demo
+                          </a>
+                        </Button>
+                      </CardItem>
+                    )}
+                    {project.githubUrl && (
+                      <CardItem translateZ={20}>
+                        <Button size="sm" variant="ghost" asChild className="text-xs px-3 py-1">
+                          <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="flex items-center">
+                            <GitBranch className="w-3 h-3 mr-1" />
+                            Code
+                          </a>
+                        </Button>
+                      </CardItem>
                     )}
                   </div>
-                </CardContent>
-                <CardFooter className="flex gap-2 pt-0">
-                  {project.liveUrl && (
-                    <Button size="sm" variant="ghost" asChild className="text-xs">
-                      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                        <ExternalLink className="w-3 h-3 mr-1" />
-                        Demo
-                      </a>
-                    </Button>
-                  )}
-                  {project.githubUrl && (
-                    <Button size="sm" variant="ghost" asChild className="text-xs">
-                      <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                        <Github className="w-3 h-3 mr-1" />
-                        Code
-                      </a>
-                    </Button>
-                  )}
-                </CardFooter>
-              </Card>
+                </CardBody>
+              </CardContainer>
             ))}
           </div>
         </div>

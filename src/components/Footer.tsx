@@ -169,7 +169,7 @@ export default function Footer() {
                         numRows={2}
                         className="text-xs text-gray-400 font-normal tracking-wide"
                     >
-                        ✨ Digital Solutions • Web Development • Graphics Design • Video Editing • Digital Marketing •
+                         Digital Solutions • Web Development • Graphics Design • Video Editing • Digital Marketing •
                     </VelocityScroll>
                 </div>
             </div>
