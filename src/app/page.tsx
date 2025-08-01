@@ -214,7 +214,7 @@ export default function Home() {
         <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center px-4 pt-20">
           {/* Left Content */}
           <div className="dark:text-white text-slate-950 space-y-6">
-            <h1 className="text-5xl md:text-6xl font-bold leading-tight">
+            <h1 className="text-5xl md:text-6xl font-bold leading-tight font-dm-sans">
               Empowering Businesses,{" "}
               <span className="bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
                 Digitally.

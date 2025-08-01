@@ -92,29 +92,29 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
       value={{ onCardClose: handleCardClose, currentIndex }}
     >
       <div className="relative w-full">
-        {/* Navigation arrows moved to top */}
-        <div className="mr-10 flex justify-end gap-2 mb-0.5">
-          <button
-            className="relative z-40 flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 disabled:opacity-50 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-            onClick={scrollLeft}
-            disabled={!canScrollLeft}
-          >
-            <IconArrowNarrowLeft className="h-6 w-6 text-gray-500 dark:text-gray-400" />
-          </button>
-          <button
-            className="relative z-40 flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 disabled:opacity-50 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-            onClick={scrollRight}
-            disabled={!canScrollRight}
-          >
-            <IconArrowNarrowRight className="h-6 w-6 text-gray-500 dark:text-gray-400" />
-          </button>
-        </div>
-
         <div
           className="flex w-full overflow-x-scroll overscroll-x-auto scroll-smooth py-10 [scrollbar-width:none] md:py-20"
           ref={carouselRef}
           onScroll={checkScrollability}
         >
+        
+        {/* Navigation arrows overlaid on top-right of cards */}
+        <div className="absolute top-16 right-8 md:top-24 md:right-12 flex gap-2 z-50">
+          <button
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-white/90 dark:bg-black/90 backdrop-blur-sm shadow-lg disabled:opacity-50 hover:bg-white dark:hover:bg-black transition-all duration-200 hover:scale-105"
+            onClick={scrollLeft}
+            disabled={!canScrollLeft}
+          >
+            <IconArrowNarrowLeft className="h-5 w-5 text-gray-700 dark:text-gray-300" />
+          </button>
+          <button
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-white/90 dark:bg-black/90 backdrop-blur-sm shadow-lg disabled:opacity-50 hover:bg-white dark:hover:bg-black transition-all duration-200 hover:scale-105"
+            onClick={scrollRight}
+            disabled={!canScrollRight}
+          >
+            <IconArrowNarrowRight className="h-5 w-5 text-gray-700 dark:text-gray-300" />
+          </button>
+        </div>
           <div
             className={cn(
               "absolute right-0 z-[1000] h-auto w-[5%] overflow-hidden bg-gradient-to-l",
