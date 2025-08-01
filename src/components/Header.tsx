@@ -37,21 +37,19 @@ export default function Header() {
 
   return (
     <motion.header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "mx-4 md:mx-8 mt-4"
-          : "mx-0 mt-0"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
+        ? "mx-4 md:mx-8 mt-4"
+        : "mx-0 mt-0"
+        }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
     >
       <motion.div
-        className={`max-w-7xl mx-auto px-4 md:px-6 py-4 transition-all duration-300 ${
-          isScrolled
-            ? "bg-background/80 backdrop-blur-md rounded-2xl shadow-lg border border-border/50"
-            : "bg-transparent"
-        }`}
+        className={`max-w-7xl mx-auto px-4 md:px-6 py-4 transition-all duration-300 ${isScrolled
+          ? "bg-background/80 backdrop-blur-md rounded-2xl shadow-lg border border-border/50"
+          : "bg-transparent"
+          }`}
         layout
       >
         <div className="flex items-center justify-between">
@@ -64,9 +62,8 @@ export default function Header() {
               height={40}
               className="transition-opacity duration-300"
             />
-            <span className={`hidden md:block font-bold text-xl transition-colors duration-300 font-ttlakes ${
-              isScrolled ? "text-foreground" : "text-slate-950 dark:text-white"
-            }`}>
+            <span className={`hidden md:block font-bold text-l transition-colors duration-300 font-ttlakes ${isScrolled ? "text-foreground" : "text-slate-950 dark:text-white"
+              }`}>
               Zarespace Digital
             </span>
           </Link>
@@ -77,9 +74,8 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`font-medium transition-colors duration-300 hover:text-primary ${
-                  isScrolled ? "text-foreground" : "text-slate-950 dark:text-white"
-                }`}
+                className={`font-medium transition-colors duration-300 hover:text-primary ${isScrolled ? "text-foreground" : "text-slate-950 dark:text-white"
+                  }`}
               >
                 {link.label}
               </Link>
@@ -90,20 +86,18 @@ export default function Header() {
           <div className="flex items-center space-x-4">
             <ThemeToggle />
             <Button
-              className={`hidden sm:flex ${
-                isScrolled
-                  ? "bg-primary hover:bg-primary/90 text-primary-foreground"
-                  : "bg-primary hover:bg-primary/90 text-primary-foreground"
-              }`}
+              className={`hidden sm:flex ${isScrolled
+                ? "bg-primary hover:bg-primary/90 text-primary-foreground"
+                : "bg-primary hover:bg-primary/90 text-primary-foreground"
+                }`}
             >
               Get Started
             </Button>
 
             {/* Mobile Menu Button */}
             <button
-              className={`md:hidden p-2 transition-colors duration-300 ${
-                isScrolled ? "text-foreground" : "text-slate-950 dark:text-white"
-              }`}
+              className={`md:hidden p-2 transition-colors duration-300 ${isScrolled ? "text-foreground" : "text-slate-950 dark:text-white"
+                }`}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -125,9 +119,8 @@ export default function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`font-medium transition-colors duration-300 hover:text-primary ${
-                    isScrolled ? "text-foreground" : "text-slate-950 dark:text-white"
-                  }`}
+                  className={`font-medium transition-colors duration-300 hover:text-primary ${isScrolled ? "text-foreground" : "text-slate-950 dark:text-white"
+                    }`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.label}
