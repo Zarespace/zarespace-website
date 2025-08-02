@@ -1,14 +1,16 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import { Carousel, Card } from "@/components/ui/apple-cards-carousel";
-import Image from "next/image";
+import { Rocket, Users, DollarSign, Zap } from "lucide-react";
 
 // Services data for the carousel
 const servicesData = [
   {
     category: "Development",
     title: "Web Development",
-    src: "/window.svg",
+    src: "/stock/web_dev.jpg",
     content: (
       <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
         <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
@@ -43,7 +45,7 @@ const servicesData = [
   {
     category: "Design",
     title: "Graphics Design",
-    src: "/file.svg",
+    src: "/stock/graphics.png",
     content: (
       <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
         <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
@@ -77,7 +79,7 @@ const servicesData = [
   {
     category: "Media",
     title: "Video Editing",
-    src: "/globe.svg",
+    src: "/stock/video.jpg",
     content: (
       <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
         <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
@@ -111,7 +113,7 @@ const servicesData = [
   {
     category: "Marketing",
     title: "Digital Marketing",
-    src: "/Logo.png",
+    src: "/stock/marketing.jpg",
     content: (
       <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
         <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
@@ -145,7 +147,7 @@ const servicesData = [
   {
     category: "Explore More",
     title: "View All Services",
-    src: "/Logo.png",
+    src: "/stock/web_dev.jpg",
     content: (
       <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
         <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
@@ -171,8 +173,8 @@ const servicesData = [
             <p className="text-sm mb-4">
               Explore our comprehensive services page to find the perfect solution for your business needs.
             </p>
-            <a 
-              href="/services" 
+            <a
+              href="/services"
               className="inline-flex items-center justify-center px-6 py-3 bg-primary hover:bg-primary/90 text-primary-foreground font-medium rounded-lg transition-colors w-full"
             >
               View All Services →
@@ -193,14 +195,78 @@ function ServicesSection() {
     <section className="py-20 bg-background">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-left mb-8">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 font-dm-sans bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
             Our Services
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl">
+          <p className="text-xl text-muted-foreground max-w-3xl font-inter">
             Comprehensive digital solutions designed to transform your business. Click on any service to learn more about what we offer.
           </p>
         </div>
         <Carousel items={cards} />
+      </div>
+    </section>
+  );
+}
+
+function WhyChooseUsSection() {
+  return (
+    <section className="py-20 bg-gradient-to-br from-background to-accent/5">
+      <div className="max-w-7xl mx-auto px-4">
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 font-dm-sans bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+            Why Choose Zarespace Digital?
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto font-inter">
+            We're not just another agency. We're your digital growth partners, built for the modern business landscape.
+          </p>
+        </div>
+
+        {/* Clean Grid Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+          {/* Fast Delivery */}
+          <div className="text-center p-10">
+            <div className="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+              <Zap className="w-12 h-12 text-primary" />
+            </div>
+            <h3 className="text-2xl font-bold mb-3 font-dm-sans">Fast Delivery</h3>
+            <p className="text-lg text-muted-foreground font-inter">2-week average turnaround</p>
+          </div>
+
+          {/* Direct Communication */}
+          <div className="text-center p-10">
+            <div className="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+              <Users className="w-12 h-12 text-primary" />
+            </div>
+            <h3 className="text-2xl font-bold mb-3 font-dm-sans">Direct Communication</h3>
+            <p className="text-lg text-muted-foreground font-inter">Work directly with founders</p>
+          </div>
+
+          {/* Modern Tech Stack */}
+          <div className="text-center p-10">
+            <div className="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+              <Rocket className="w-12 h-12 text-primary" />
+            </div>
+            <h3 className="text-2xl font-bold mb-3 font-dm-sans">Modern Tech Stack</h3>
+            <p className="text-lg text-muted-foreground font-inter">Latest tools, not legacy</p>
+          </div>
+
+          {/* Transparent Pricing */}
+          <div className="text-center p-10">
+            <div className="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+              <DollarSign className="w-12 h-12 text-primary" />
+            </div>
+            <h3 className="text-2xl font-bold mb-3 font-dm-sans">Transparent Pricing</h3>
+            <p className="text-lg text-muted-foreground font-inter">No hidden fees or surprises</p>
+          </div>
+        </div>
+
+        {/* Call to Action */}
+        <div className="text-center mt-16">
+          <Button size="lg" className="px-8 py-3">
+            Ready to Get Started?
+          </Button>
+        </div>
       </div>
     </section>
   );
@@ -220,7 +286,7 @@ export default function Home() {
                 Digitally.
               </span>
             </h1>
-            <p className="text-xl dark:text-neutral-200 text-slate-700 leading-relaxed">
+            <p className="text-xl dark:text-neutral-200 text-slate-700 leading-relaxed font-inter">
               We help startups and SMEs transform their digital presence with cutting-edge
               web development, design, video, and marketing solutions.
             </p>
@@ -233,7 +299,7 @@ export default function Home() {
               </Button>
             </div>
             <div className="pt-4">
-              <p className="text-sm dark:text-neutral-300 text-slate-600">
+              <p className="text-sm dark:text-neutral-300 text-slate-600 font-inter">
                 Helping businesses grow since 2024
               </p>
             </div>
@@ -245,8 +311,8 @@ export default function Home() {
               <div className="w-60 h-60 bg-gradient-to-br from-primary/40 to-blue-400/20 rounded-full flex items-center justify-center backdrop-blur-sm">
                 <div className="text-center dark:text-white text-slate-950">
                   <div className="text-4xl mb-2">✨</div>
-                  <p className="text-sm font-medium">Digital Innovation</p>
-                  <p className="text-xs dark:text-neutral-300 text-slate-600 mt-1">Coming Soon</p>
+                  <p className="text-sm font-medium font-dm-sans">Digital Innovation</p>
+                  <p className="text-xs dark:text-neutral-300 text-slate-600 mt-1 font-inter">Coming Soon</p>
                 </div>
               </div>
             </div>
@@ -257,12 +323,15 @@ export default function Home() {
       {/* Services Section */}
       <ServicesSection />
 
+      {/* Why Choose Us Section */}
+      <WhyChooseUsSection />
+
       {/* Temporary sections placeholder */}
       <section className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-4">More Sections Coming Soon</h2>
-          <p className="text-muted-foreground">
-            Why Choose Us • Portfolio • Process • About • Contact
+          <h2 className="text-3xl font-bold mb-4 font-dm-sans">More Sections Coming Soon</h2>
+          <p className="text-muted-foreground font-inter">
+            Portfolio • Process • About • Contact
           </p>
         </div>
       </section>

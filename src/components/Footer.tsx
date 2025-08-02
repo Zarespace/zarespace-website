@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { VelocityScroll } from "@/components/magicui/scroll-based-velocity";
 import { useTheme } from "next-themes";
+import { Linkedin, Twitter, Instagram, Facebook, Mail, Phone } from "lucide-react";
 
 export default function Footer() {
     const currentYear = new Date().getFullYear();
@@ -38,10 +39,10 @@ export default function Footer() {
     ];
 
     const socialLinks = [
-        { href: "#", label: "LinkedIn", icon: "linkedin" },
-        { href: "#", label: "Twitter", icon: "twitter" },
-        { href: "#", label: "Instagram", icon: "instagram" },
-        { href: "#", label: "Facebook", icon: "facebook" },
+        { href: "#", label: "LinkedIn", icon: Linkedin },
+        { href: "#", label: "Twitter", icon: Twitter },
+        { href: "#", label: "Instagram", icon: Instagram },
+        { href: "#", label: "Facebook", icon: Facebook },
     ];
 
     return (
@@ -69,11 +70,13 @@ export default function Footer() {
                             design, video, and marketing solutions.
                         </p>
                         <div className="space-y-2 text-sm">
-                            <p className="text-gray-300">
-                                📧 hello@zarespace.digital
+                            <p className="text-gray-300 flex items-center space-x-2">
+                                <Mail className="w-4 h-4" />
+                                <span>hello@zarespace.digital</span>
                             </p>
-                            <p className="text-gray-300">
-                                📞 +1 (555) 123-4567
+                            <p className="text-gray-300 flex items-center space-x-2">
+                                <Phone className="w-4 h-4" />
+                                <span>+1 (555) 123-4567</span>
                             </p>
                         </div>
                     </div>
@@ -131,21 +134,19 @@ export default function Footer() {
 
                         {/* Social Links */}
                         <div className="flex space-x-3">
-                            {socialLinks.map((social) => (
-                                <Link
-                                    key={social.label}
-                                    href={social.href}
-                                    className="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors text-white"
-                                    aria-label={social.label}
-                                >
-                                    <span className="text-xs font-bold">
-                                        {social.icon === "linkedin" && "Li"}
-                                        {social.icon === "twitter" && "X"}
-                                        {social.icon === "instagram" && "Ig"}
-                                        {social.icon === "facebook" && "Fb"}
-                                    </span>
-                                </Link>
-                            ))}
+                            {socialLinks.map((social) => {
+                                const IconComponent = social.icon;
+                                return (
+                                    <Link
+                                        key={social.label}
+                                        href={social.href}
+                                        className="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors text-white"
+                                        aria-label={social.label}
+                                    >
+                                        <IconComponent className="w-4 h-4" />
+                                    </Link>
+                                );
+                            })}
                         </div>
                     </div>
                 </div>

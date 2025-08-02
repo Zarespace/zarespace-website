@@ -97,24 +97,24 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
           ref={carouselRef}
           onScroll={checkScrollability}
         >
-        
-        {/* Navigation arrows overlaid on top-right of cards */}
-        <div className="absolute top-16 right-8 md:top-24 md:right-12 flex gap-2 z-50">
-          <button
-            className="flex h-10 w-10 items-center justify-center rounded-full bg-white/90 dark:bg-black/90 backdrop-blur-sm shadow-lg disabled:opacity-50 hover:bg-white dark:hover:bg-black transition-all duration-200 hover:scale-105"
-            onClick={scrollLeft}
-            disabled={!canScrollLeft}
-          >
-            <IconArrowNarrowLeft className="h-5 w-5 text-gray-700 dark:text-gray-300" />
-          </button>
-          <button
-            className="flex h-10 w-10 items-center justify-center rounded-full bg-white/90 dark:bg-black/90 backdrop-blur-sm shadow-lg disabled:opacity-50 hover:bg-white dark:hover:bg-black transition-all duration-200 hover:scale-105"
-            onClick={scrollRight}
-            disabled={!canScrollRight}
-          >
-            <IconArrowNarrowRight className="h-5 w-5 text-gray-700 dark:text-gray-300" />
-          </button>
-        </div>
+
+          {/* Navigation arrows overlaid on top-right of cards */}
+          <div className="absolute top-16 right-8 md:top-24 md:right-12 flex gap-2 z-50">
+            <button
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-white dark:bg-black shadow-lg disabled:opacity-50 hover:bg-white dark:hover:bg-black transition-all duration-200 hover:scale-105"
+              onClick={scrollLeft}
+              disabled={!canScrollLeft}
+            >
+              <IconArrowNarrowLeft className="h-5 w-5 text-gray-700 dark:text-gray-300" />
+            </button>
+            <button
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-white dark:bg-black shadow-lg disabled:opacity-50 hover:bg-white dark:hover:bg-black transition-all duration-200 hover:scale-105"
+              onClick={scrollRight}
+              disabled={!canScrollRight}
+            >
+              <IconArrowNarrowRight className="h-5 w-5 text-gray-700 dark:text-gray-300" />
+            </button>
+          </div>
           <div
             className={cn(
               "absolute right-0 z-[1000] h-auto w-[5%] overflow-hidden bg-gradient-to-l",
@@ -205,7 +205,7 @@ export const Card = ({
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 h-full w-full bg-black/80 backdrop-blur-lg"
+              className="fixed inset-0 h-full w-full bg-black/80"
             />
             <motion.div
               initial={{ opacity: 0 }}
@@ -289,7 +289,7 @@ export const BlurImage = ({
     <img
       className={cn(
         "h-full w-full transition duration-300",
-        isLoading ? "blur-sm" : "blur-0",
+        "",
         className,
       )}
       onLoad={() => setLoading(false)}
