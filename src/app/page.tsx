@@ -1,9 +1,89 @@
 "use client";
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import { Carousel, Card } from "@/components/ui/apple-cards-carousel";
-import { Rocket, Users, DollarSign, Zap } from "lucide-react";
+import { Rocket, Users, DollarSign, Zap, X, ExternalLink, Calendar, User } from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
+import Image from "next/image";
+
+// Portfolio data for the grid
+const portfolioData = [
+  {
+    id: 1,
+    category: "Web Development",
+    name: "TechStart Landing Page",
+    image: "/stock/web_dev.jpg",
+    description: "A modern, responsive landing page for a tech startup featuring smooth animations and optimized performance.",
+    client: "TechStart Inc.",
+    year: "2024",
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Motion"],
+    features: ["Responsive Design", "SEO Optimized", "Fast Loading", "Modern UI/UX"],
+    link: "#"
+  },
+  {
+    id: 2,
+    category: "Graphics Design",
+    name: "Brand Identity Suite",
+    image: "/stock/graphics.png",
+    description: "Complete brand identity design including logo, color palette, typography, and marketing materials.",
+    client: "Creative Agency",
+    year: "2024",
+    technologies: ["Adobe Illustrator", "Photoshop", "Figma"],
+    features: ["Logo Design", "Brand Guidelines", "Marketing Materials", "Digital Assets"],
+    link: "#"
+  },
+  {
+    id: 3,
+    category: "Video Editing",
+    name: "Product Launch Video",
+    image: "/stock/video.jpg",
+    description: "High-impact product launch video with motion graphics, professional editing, and compelling storytelling.",
+    client: "Product Co.",
+    year: "2024",
+    technologies: ["Premiere Pro", "After Effects", "DaVinci Resolve"],
+    features: ["Motion Graphics", "Color Grading", "Sound Design", "Professional Editing"],
+    link: "#"
+  },
+  {
+    id: 4,
+    category: "Digital Marketing",
+    name: "Social Media Campaign",
+    image: "/stock/marketing.jpg",
+    description: "Comprehensive social media marketing campaign that increased engagement by 300% and drove significant conversions.",
+    client: "E-commerce Brand",
+    year: "2024",
+    technologies: ["Facebook Ads", "Google Analytics", "Hootsuite"],
+    features: ["Content Strategy", "Ad Management", "Analytics", "ROI Optimization"],
+    link: "#"
+  },
+  {
+    id: 5,
+    category: "Web Development",
+    name: "E-commerce Platform",
+    image: "/stock/web_dev.jpg",
+    description: "Full-featured e-commerce platform with payment integration, inventory management, and admin dashboard.",
+    client: "Retail Business",
+    year: "2024",
+    technologies: ["React", "Node.js", "MongoDB", "Stripe"],
+    features: ["Payment Integration", "Inventory Management", "Admin Dashboard", "Mobile Responsive"],
+    link: "#"
+  },
+  {
+    id: 6,
+    category: "Graphics Design",
+    name: "Marketing Campaign Assets",
+    image: "/stock/graphics.png",
+    description: "Complete set of marketing assets including social media graphics, banners, and print materials for a product launch.",
+    client: "Startup Company",
+    year: "2024",
+    technologies: ["Adobe Creative Suite", "Canva Pro"],
+    features: ["Social Media Graphics", "Print Materials", "Web Banners", "Brand Consistency"],
+    link: "#"
+  }
+];
 
 // Services data for the carousel
 const servicesData = [
@@ -192,7 +272,7 @@ function ServicesSection() {
   ));
 
   return (
-    <section className="py-20 bg-background">
+    <section className="py-12 bg-background">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-left mb-8">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 font-dm-sans bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
@@ -208,9 +288,200 @@ function ServicesSection() {
   );
 }
 
+function PortfolioSection() {
+  const [selectedProject, setSelectedProject] = useState<typeof portfolioData[0] | null>(null);
+
+  return (
+    <section className="py-12 bg-background">
+      <div className="max-w-7xl mx-auto px-4">
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 font-dm-sans bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+            Our Portfolio
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto font-inter">
+            Showcasing our best work across web development, design, video, and marketing. Each project represents our commitment to excellence and innovation.
+          </p>
+        </div>
+
+        {/* 3x2 Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          {portfolioData.map((project, index) => (
+            <motion.div
+              key={project.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="group cursor-pointer"
+              onClick={() => setSelectedProject(project)}
+            >
+              {/* Project Card */}
+              <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 aspect-[4/3] mb-4 group-hover:scale-105 transition-transform duration-300">
+                {/* Category Badge */}
+                <div className="absolute top-4 left-4 z-10">
+                  <Badge variant="secondary" className="bg-primary/90 text-primary-foreground font-medium">
+                    {project.category}
+                  </Badge>
+                </div>
+
+                {/* Project Image */}
+                <div className="relative w-full h-full">
+                  <Image
+                    src={project.image}
+                    alt={project.name}
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300" />
+
+                  {/* Hover Content */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="text-center text-white">
+                      <ExternalLink className="w-8 h-8 mx-auto mb-2" />
+                      <p className="text-sm font-medium">View Details</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Project Name */}
+              <h3 className="text-lg font-bold font-dm-sans group-hover:text-primary transition-colors duration-300">
+                {project.name}
+              </h3>
+              <p className="text-sm text-muted-foreground font-inter mt-1">
+                {project.client} • {project.year}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Call to Action */}
+        <div className="text-center">
+          <Button size="lg" className="px-8 py-3" asChild>
+            <a href="/projects">View All Projects</a>
+          </Button>
+        </div>
+
+        {/* Project Popup Modal */}
+        <AnimatePresence>
+          {selectedProject && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
+              onClick={() => setSelectedProject(null)}
+            >
+              <motion.div
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                className="relative bg-white dark:bg-gray-900 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Close Button */}
+                <button
+                  onClick={() => setSelectedProject(null)}
+                  className="absolute top-4 right-4 z-10 w-8 h-8 bg-black/20 hover:bg-black/40 rounded-full flex items-center justify-center text-white transition-colors"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+
+                {/* Project Image */}
+                <div className="relative h-64 md:h-80 overflow-hidden rounded-t-2xl">
+                  <Image
+                    src={selectedProject.image}
+                    alt={selectedProject.name}
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+
+                  {/* Project Info Overlay */}
+                  <div className="absolute bottom-6 left-6">
+                    <Badge className="bg-primary/90 text-primary-foreground mb-2">
+                      {selectedProject.category}
+                    </Badge>
+                    <h3 className="text-2xl md:text-3xl font-bold text-white font-dm-sans">
+                      {selectedProject.name}
+                    </h3>
+                  </div>
+                </div>
+
+                {/* Project Details */}
+                <div className="p-6 md:p-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {/* Left Column */}
+                    <div>
+                      <h4 className="text-lg font-bold font-dm-sans mb-3">Project Overview</h4>
+                      <p className="text-muted-foreground font-inter mb-6 leading-relaxed">
+                        {selectedProject.description}
+                      </p>
+
+                      <div className="space-y-4">
+                        <div className="flex items-center space-x-3">
+                          <User className="w-5 h-5 text-primary" />
+                          <div>
+                            <p className="text-sm font-medium">Client</p>
+                            <p className="text-sm text-muted-foreground">{selectedProject.client}</p>
+                          </div>
+                        </div>
+                        <div className="flex items-center space-x-3">
+                          <Calendar className="w-5 h-5 text-primary" />
+                          <div>
+                            <p className="text-sm font-medium">Year</p>
+                            <p className="text-sm text-muted-foreground">{selectedProject.year}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Right Column */}
+                    <div>
+                      <h4 className="text-lg font-bold font-dm-sans mb-3">Technologies Used</h4>
+                      <div className="flex flex-wrap gap-2 mb-6">
+                        {selectedProject.technologies.map((tech) => (
+                          <Badge key={tech} variant="outline" className="text-xs">
+                            {tech}
+                          </Badge>
+                        ))}
+                      </div>
+
+                      <h4 className="text-lg font-bold font-dm-sans mb-3">Key Features</h4>
+                      <ul className="space-y-2">
+                        {selectedProject.features.map((feature) => (
+                          <li key={feature} className="flex items-center space-x-2">
+                            <div className="w-1.5 h-1.5 bg-primary rounded-full" />
+                            <span className="text-sm font-inter">{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Action Button */}
+                  <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+                    <Button className="w-full md:w-auto" asChild>
+                      <a href={selectedProject.link} target="_blank" rel="noopener noreferrer">
+                        <ExternalLink className="w-4 h-4 mr-2" />
+                        View Live Project
+                      </a>
+                    </Button>
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </section>
+  );
+}
+
 function WhyChooseUsSection() {
   return (
-    <section className="py-20 bg-gradient-to-br from-background to-accent/5">
+    <section className="py-12 bg-gradient-to-br from-background to-accent/5">
       <div className="max-w-7xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -223,49 +494,161 @@ function WhyChooseUsSection() {
         </div>
 
         {/* Clean Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
           {/* Fast Delivery */}
-          <div className="text-center p-10">
-            <div className="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-              <Zap className="w-12 h-12 text-primary" />
-            </div>
+          <motion.div
+            className="text-center p-10"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            <motion.div
+              className="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6"
+              animate={{
+                scale: [1, 1.05, 1],
+                rotate: [0, 3, -3, 0]
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
+              <motion.div
+                animate={{
+                  rotate: [0, -15, 15, -10, 10, 0],
+                  scale: [1, 1.2, 0.9, 1.15, 1]
+                }}
+                transition={{
+                  duration: 2.5,
+                  repeat: Infinity,
+                  repeatDelay: 0.5,
+                  ease: "easeInOut"
+                }}
+              >
+                <Zap className="w-12 h-12 text-primary" />
+              </motion.div>
+            </motion.div>
             <h3 className="text-2xl font-bold mb-3 font-dm-sans">Fast Delivery</h3>
             <p className="text-lg text-muted-foreground font-inter">2-week average turnaround</p>
-          </div>
+          </motion.div>
 
           {/* Direct Communication */}
-          <div className="text-center p-10">
-            <div className="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-              <Users className="w-12 h-12 text-primary" />
-            </div>
+          <motion.div
+            className="text-center p-10"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <motion.div
+              className="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6"
+              animate={{
+                scale: [1, 1.08, 1],
+                y: [0, -2, 0]
+              }}
+              transition={{
+                duration: 3.5,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
+              <motion.div
+                animate={{
+                  y: [0, -8, 0, -5, 0],
+                  scale: [1, 1.1, 0.95, 1.08, 1],
+                  rotate: [0, 2, -2, 0]
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  repeatDelay: 0.8,
+                  ease: "easeInOut"
+                }}
+              >
+                <Users className="w-12 h-12 text-primary" />
+              </motion.div>
+            </motion.div>
             <h3 className="text-2xl font-bold mb-3 font-dm-sans">Direct Communication</h3>
             <p className="text-lg text-muted-foreground font-inter">Work directly with founders</p>
-          </div>
+          </motion.div>
 
           {/* Modern Tech Stack */}
-          <div className="text-center p-10">
-            <div className="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-              <Rocket className="w-12 h-12 text-primary" />
-            </div>
+          <motion.div
+            className="text-center p-10"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <motion.div
+              className="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6"
+              animate={{
+                scale: [1, 1.06, 1],
+                rotate: [0, 5, -5, 0]
+              }}
+              transition={{
+                duration: 4.2,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
+              <motion.div
+                animate={{
+                  rotate: [0, 20, -20, 15, -10, 0],
+                  y: [0, -6, 4, -4, 0],
+                  scale: [1, 1.15, 0.9, 1.1, 1]
+                }}
+                transition={{
+                  duration: 3.5,
+                  repeat: Infinity,
+                  repeatDelay: 0.3,
+                  ease: "easeInOut"
+                }}
+              >
+                <Rocket className="w-12 h-12 text-primary" />
+              </motion.div>
+            </motion.div>
             <h3 className="text-2xl font-bold mb-3 font-dm-sans">Modern Tech Stack</h3>
             <p className="text-lg text-muted-foreground font-inter">Latest tools, not legacy</p>
-          </div>
+          </motion.div>
 
           {/* Transparent Pricing */}
-          <div className="text-center p-10">
-            <div className="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-              <DollarSign className="w-12 h-12 text-primary" />
-            </div>
+          <motion.div
+            className="text-center p-10"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <motion.div
+              className="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6"
+              animate={{
+                scale: [1, 1.07, 1],
+                rotate: [0, -4, 4, 0]
+              }}
+              transition={{
+                duration: 3.8,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
+              <motion.div
+                animate={{
+                  scale: [1, 1.2, 0.85, 1.15, 1],
+                  rotate: [0, 8, -8, 5, -5, 0],
+                  y: [0, -2, 2, 0]
+                }}
+                transition={{
+                  duration: 2.8,
+                  repeat: Infinity,
+                  repeatDelay: 1.2,
+                  ease: "easeInOut"
+                }}
+              >
+                <DollarSign className="w-12 h-12 text-primary" />
+              </motion.div>
+            </motion.div>
             <h3 className="text-2xl font-bold mb-3 font-dm-sans">Transparent Pricing</h3>
             <p className="text-lg text-muted-foreground font-inter">No hidden fees or surprises</p>
-          </div>
-        </div>
-
-        {/* Call to Action */}
-        <div className="text-center mt-16">
-          <Button size="lg" className="px-8 py-3">
-            Ready to Get Started?
-          </Button>
+          </motion.div>
         </div>
       </div>
     </section>
@@ -326,12 +709,15 @@ export default function Home() {
       {/* Why Choose Us Section */}
       <WhyChooseUsSection />
 
+      {/* Portfolio Section */}
+      <PortfolioSection />
+
       {/* Temporary sections placeholder */}
-      <section className="py-20 bg-background">
+      <section className="py-12 bg-background">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4 font-dm-sans">More Sections Coming Soon</h2>
           <p className="text-muted-foreground font-inter">
-            Portfolio • Process • About • Contact
+            Process • About • Contact
           </p>
         </div>
       </section>

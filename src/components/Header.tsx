@@ -20,11 +20,19 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
+    let ticking = false;
+
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          setIsScrolled(window.scrollY > 20);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -37,32 +45,38 @@ export default function Header() {
 
   return (
     <motion.header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-        ? "mx-4 md:mx-8 mt-4"
-        : "mx-0 mt-0"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "mx-4 md:mx-8 mt-4" : "mx-0 mt-0"
         }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
     >
       <motion.div
         className={`max-w-7xl mx-auto px-4 md:px-6 py-4 transition-all duration-300 ${isScrolled
           ? "bg-background/80 backdrop-blur-md rounded-2xl shadow-lg border border-border/50"
           : "bg-transparent"
           }`}
-        layout
+        animate={{
+          scale: isScrolled ? 0.97 : 1,
+        }}
+        transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
       >
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3">
-            <Image
-              src={mounted && resolvedTheme === 'dark' ? "/logo_dark.svg" : "/logo_light.svg"}
-              alt="Zarespace Digital"
-              width={40}
-              height={40}
-              className="transition-opacity duration-300"
-            />
-            <span className={`hidden md:block font-bold text-l transition-colors duration-300 font-ttlakes ${isScrolled ? "text-foreground" : "text-slate-950 dark:text-white"
+            <motion.div
+              animate={{ scale: isScrolled ? 0.9 : 1 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+            >
+              <Image
+                src={mounted && resolvedTheme === 'dark' ? "/logo_dark.svg" : "/logo_light.svg"}
+                alt="Zarespace Digital"
+                width={40}
+                height={40}
+                className="transition-opacity duration-300"
+              />
+            </motion.div>
+            <span className={`hidden md:block font-bold text-lg transition-colors duration-300 font-ttlakes ${isScrolled ? "text-foreground" : "text-slate-950 dark:text-white"
               }`}>
               Zarespace Digital
             </span>
@@ -85,14 +99,15 @@ export default function Header() {
           {/* Theme Toggle, CTA Button & Mobile Menu */}
           <div className="flex items-center space-x-4">
             <ThemeToggle />
-            <Button
-              className={`hidden sm:flex ${isScrolled
-                ? "bg-primary hover:bg-primary/90 text-primary-foreground"
-                : "bg-primary hover:bg-primary/90 text-primary-foreground"
-                }`}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3, delay: 0.4 }}
             >
-              Get Started
-            </Button>
+              <Button className="hidden sm:flex bg-primary hover:bg-primary/90 text-primary-foreground">
+                Get Started
+              </Button>
+            </motion.div>
 
             {/* Mobile Menu Button */}
             <button
