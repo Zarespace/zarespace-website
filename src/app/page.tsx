@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { AuroraBackground } from "@/components/ui/aurora-background";
+import { Interactive3DMockup } from "@/components/ui/interactive-3d-mockup";
 import { Carousel, Card } from "@/components/ui/apple-cards-carousel";
 import { Rocket, Users, DollarSign, Zap, X, ExternalLink, Calendar, User } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
@@ -688,17 +689,9 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Right Visual - Enhanced with Aurora theme */}
-          <div className="flex items-center justify-center">
-            <div className="w-80 h-80 bg-gradient-to-br from-primary/30 to-blue-500/20 rounded-full flex items-center justify-center border border-primary/30 backdrop-blur-sm">
-              <div className="w-60 h-60 bg-gradient-to-br from-primary/40 to-blue-400/20 rounded-full flex items-center justify-center backdrop-blur-sm">
-                <div className="text-center dark:text-white text-slate-950">
-                  <div className="text-4xl mb-2">✨</div>
-                  <p className="text-sm font-medium font-dm-sans">Digital Innovation</p>
-                  <p className="text-xs dark:text-neutral-300 text-slate-600 mt-1 font-inter">Coming Soon</p>
-                </div>
-              </div>
-            </div>
+          {/* Right Visual - Interactive 3D Mockup */}
+          <div className="flex items-center justify-center h-96">
+            <Interactive3DMockup className="w-full h-full" />
           </div>
         </div>
       </AuroraBackground>
