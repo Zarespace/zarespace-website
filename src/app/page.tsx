@@ -6,6 +6,9 @@ import { Badge } from "@/components/ui/badge";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import { Interactive3DMockup } from "@/components/ui/interactive-3d-mockup";
 import { Carousel, Card } from "@/components/ui/apple-cards-carousel";
+import { Timeline } from "@/components/ui/timeline";
+import { DraggableCardBody, DraggableCardContainer } from "@/components/ui/draggable-card";
+import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 import { Rocket, Users, DollarSign, Zap, X, ExternalLink, Calendar, User } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import Image from "next/image";
@@ -656,6 +659,304 @@ function WhyChooseUsSection() {
   );
 }
 
+function AboutSection() {
+  const teamMembers = [
+    {
+      id: 1,
+      name: "Fuad Getachew",
+      role: "Founder & CEO",
+      skills: ["Strategy", "Vision", "Leadership"],
+      image: "/team/fuad.jpg", // Placeholder - you can replace with actual images
+      bio: "Visionary leader with 2+ years in digital transformation",
+      color: "from-blue-400 to-blue-600",
+      position: { x: 20, y: 15 }
+    },
+    {
+      id: 2,
+      name: "Remedan Mohammedzeyn",
+      role: "Lead Developer",
+      skills: ["React", "Next.js", "TypeScript"],
+      image: "/team/developer.jpg",
+      bio: "Full-stack wizard who turns ideas into reality",
+      color: "from-green-400 to-green-600",
+      position: { x: 70, y: 25 }
+    },
+    {
+      id: 3,
+      name: "Abdellah Qadi",
+      role: "Creative Director",
+      skills: ["UI/UX", "Figma", "Branding"],
+      image: "/team/abde.jpg",
+      bio: "Design perfectionist with an eye for detail",
+      color: "from-purple-400 to-purple-600",
+      position: { x: 25, y: 65 }
+    },
+    {
+      id: 4,
+      name: "Soreti Gurmu",
+      role: "Marketing Lead",
+      skills: ["SEO", "Analytics", "Growth"],
+      image: "/team/marketer.jpg",
+      bio: "Growth hacker who drives results",
+      color: "from-pink-400 to-pink-600",
+      position: { x: 75, y: 70 }
+    }
+  ];
+
+  return (
+    <section className="py-20 bg-gradient-to-br from-background to-accent/5 relative overflow-hidden">
+      {/* Background floating shapes */}
+      <div className="absolute inset-0 overflow-hidden">
+        {[...Array(8)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-20 h-20 rounded-full bg-primary/5"
+            animate={{
+              y: [0, -20, 0],
+              x: [0, 10, 0],
+              scale: [1, 1.1, 1],
+            }}
+            transition={{
+              duration: 4 + i,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: i * 0.5,
+            }}
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 relative z-10">
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 font-dm-sans bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+            Meet Our Team
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto font-inter">
+            The passionate minds behind your digital transformation
+          </p>
+        </div>
+
+        {/* Floating Team Constellation */}
+        <div className="relative h-96 md:h-[500px] mb-16" id="constellation-container">
+          {/* Central Logo - Static (Behind cards) */}
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-0">
+            <div className="w-48 h-48 flex items-center justify-center opacity-30">
+              {/* Light mode logo */}
+              <div className="w-44 h-44 dark:hidden">
+                <svg viewBox="0 0 1080 1080" className="w-full h-full">
+                  <defs>
+                    <style>
+                      {`.cls-1 {
+                        fill: #b6ff1c;
+                        stroke: #231f20;
+                        stroke-miterlimit: 10;
+                        stroke-width: 12px;
+                      }`}
+                    </style>
+                  </defs>
+                  <path className="cls-1" d="M998.5,875.69l-50.98-101.27c-1.4-2.77-4.23-4.52-7.34-4.52l-219.69-15.83-42.19,133.95,312.86-.42c4.54,0,8.22-3.68,8.22-8.22h0c0-1.28-.3-2.55-.88-3.69Z" />
+                  <path className="cls-1" d="M157.92,480.92l96.46-265.93c5.01-13.82,18.14-23.02,32.83-23.02h279.75c23.71,0,40.53,23.12,33.23,45.68l-86.03,265.93c-4.66,14.41-18.08,24.17-33.23,24.17H190.75c-24.23,0-41.09-24.06-32.83-46.83Z" />
+                  <path className="cls-1" d="M551.05,497.39l62.53-172.38c3.25-8.96,11.76-14.92,21.28-14.92h181.33c15.37,0,26.27,14.99,21.54,29.61l-55.77,172.38c-3.02,9.34-11.72,15.67-21.54,15.67h-188.09c-15.7,0-26.64-15.6-21.28-30.36Z" />
+                  <path className="cls-1" d="M91.05,739.54l62.53-172.38c3.25-8.96,11.76-14.92,21.28-14.92h181.33c15.37,0,26.27,14.99,21.54,29.61l-55.77,172.38c-3.02,9.34-11.72,15.67-21.54,15.67H112.33c-15.7,0-26.64-15.6-21.28-30.36Z" />
+                  <path className="cls-1" d="M328.74,841.19l96.46-265.93c5.01-13.82,18.14-23.02,32.83-23.02h279.75c23.71,0,40.53,23.12,33.23,45.68l-2.48,7.67-91.37,282.43h-315.58c-24.23,0-41.09-24.06-32.83-46.83Z" />
+                </svg>
+              </div>
+              {/* Dark mode logo */}
+              <div className="w-44 h-44 hidden dark:block">
+                <svg viewBox="0 0 1080 1080" className="w-full h-full">
+                  <defs>
+                    <style>
+                      {`.cls-1 {
+                        fill: #b6ff1c;
+                        stroke: #fff;
+                        stroke-miterlimit: 10;
+                        stroke-width: 12px;
+                      }`}
+                    </style>
+                  </defs>
+                  <path className="cls-1" d="M993.97,875.69l-50.98-101.27c-1.4-2.77-4.23-4.52-7.34-4.52l-219.69-15.83-42.19,133.95,312.86-.42c4.54,0,8.22-3.68,8.22-8.22h0c0-1.28-.3-2.55-.88-3.69Z" />
+                  <path className="cls-1" d="M153.39,480.92l96.46-265.93c5.01-13.82,18.14-23.02,32.83-23.02h279.75c23.71,0,40.53,23.12,33.23,45.68l-86.03,265.93c-4.66,14.41-18.08,24.17-33.23,24.17H186.22c-24.23,0-41.09-24.06-32.83-46.83Z" />
+                  <path className="cls-1" d="M546.53,497.39l62.53-172.38c3.25-8.96,11.76-14.92,21.28-14.92h181.33c15.37,0,26.27,14.99,21.54,29.61l-55.77,172.38c-3.02,9.34-11.72,15.67-21.54,15.67h-188.09c-15.7,0-26.64-15.6-21.28-30.36Z" />
+                  <path className="cls-1" d="M86.52,739.54l62.53-172.38c3.25-8.96,11.76-14.92,21.28-14.92h181.33c15.37,0,26.27,14.99,21.54,29.61l-55.77,172.38c-3.02,9.34-11.72,15.67-21.54,15.67H107.81c-15.7,0-26.64-15.6-21.28-30.36Z" />
+                  <path className="cls-1" d="M324.21,841.19l96.46-265.93c5.01-13.82,18.14-23.02,32.83-23.02h279.75c23.71,0,40.53,23.12,33.23,45.68l-2.48,7.67-91.37,282.43h-315.58c-24.23,0-41.09-24.06-32.83-46.83Z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          {/* Team Member Draggable Cards */}
+          <DraggableCardContainer className="relative w-full h-full">
+            {teamMembers.map((member, index) => {
+              // Calculate constraints to keep cards within the constellation area
+              const cardSize = 224; // 56 * 4 (w-56 = 224px)
+              const containerWidth = 896; // approximate max-w-7xl container width
+              const containerHeight = 500; // h-[500px]
+              const margin = 50; // margin from edges
+
+              return (
+                <div
+                  key={member.id}
+                  className="absolute"
+                  style={{
+                    left: `${member.position.x}%`,
+                    top: `${member.position.y}%`,
+                    transform: 'translate(-50%, -50%)',
+                  }}
+                >
+                  <motion.div
+                    drag
+                    dragConstraints={{
+                      left: -(containerWidth / 2) + margin + cardSize / 2,
+                      right: (containerWidth / 2) - margin - cardSize / 2,
+                      top: -(containerHeight / 2) + margin + cardSize / 2,
+                      bottom: (containerHeight / 2) - margin - cardSize / 2,
+                    }}
+                    dragElastic={0.1}
+                    whileDrag={{ scale: 1.05, zIndex: 50 }}
+                    className={`w-56 h-56 bg-gradient-to-br ${member.color} p-1 shadow-xl rounded-md cursor-grab active:cursor-grabbing`}
+                    style={{
+                      transformStyle: "preserve-3d",
+                    }}
+                  >
+                    <div className="w-full h-full rounded-lg bg-white dark:bg-neutral-800 overflow-hidden">
+                      {/* Team member image */}
+                      <div className="w-full h-3/4 relative overflow-hidden pointer-events-none">
+                        <Image
+                          src={member.image}
+                          alt={member.name}
+                          fill
+                          className="object-cover pointer-events-none select-none"
+                          onError={(e) => {
+                            // Fallback to placeholder if image fails to load
+                            const target = e.target as HTMLImageElement;
+                            target.style.display = 'none';
+                            const parent = target.parentElement;
+                            if (parent) {
+                              parent.innerHTML = `
+                              <div class="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 flex items-center justify-center">
+                                <div class="text-center">
+                                  <div class="w-12 h-12 bg-gradient-to-br from-gray-400 to-gray-500 dark:from-gray-600 dark:to-gray-700 rounded-full mx-auto mb-2 flex items-center justify-center">
+                                    <span class="text-white text-lg font-bold">
+                                      ${member.name.split(' ').map((n: string) => n[0]).join('')}
+                                    </span>
+                                  </div>
+                                  <div class="text-sm text-gray-600 dark:text-gray-400 font-medium">
+                                    Photo
+                                  </div>
+                                </div>
+                              </div>
+                            `;
+                            }
+                          }}
+                        />
+                      </div>
+                      {/* Team member info at bottom */}
+                      <div className="h-1/4 flex flex-col items-center justify-center px-2 py-1 pointer-events-none select-none">
+                        <span className="text-sm font-bold text-center leading-tight mb-1">
+                          {member.name}
+                        </span>
+                        <span className="text-xs text-primary font-medium text-center">
+                          {member.role}
+                        </span>
+                      </div>
+                    </div>
+                  </motion.div>
+                </div>
+              );
+            })}
+          </DraggableCardContainer>
+        </div>
+
+        {/* Team Description */}
+        <div className="max-w-4xl mx-auto text-center">
+          <p className="text-lg text-muted-foreground font-inter leading-relaxed">
+            We're a tight-knit team of digital innovators, each bringing unique expertise to every project.
+            Founded in 2024, Zarespace Digital was born from a shared vision: to help businesses thrive in the digital age
+            through cutting-edge technology and creative excellence. Our diverse backgrounds in development, design, and marketing
+            create a perfect synergy that delivers exceptional results for our clients.
+          </p>
+          <p className="text-lg text-muted-foreground font-inter leading-relaxed mt-4">
+            What sets us apart isn't just our technical skills—it's our collaborative approach, attention to detail,
+            and genuine passion for seeing our clients succeed. We believe in building lasting partnerships,
+            not just completing projects.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ProcessSection() {
+  const processData = [
+    {
+      title: "Discovery & Planning",
+      content: (
+        <div>
+          <p className="text-neutral-800 dark:text-neutral-200 text-sm md:text-base font-normal mb-4 font-inter leading-relaxed">
+            We start by understanding your business goals, target audience, and project requirements.
+            This phase includes competitor analysis, market research, and defining the project scope to ensure we're aligned from day one.
+          </p>
+        </div>
+      ),
+    },
+    {
+      title: "Design & Prototyping",
+      content: (
+        <div>
+          <p className="text-neutral-800 dark:text-neutral-200 text-sm md:text-base font-normal mb-4 font-inter leading-relaxed">
+            Our design team creates wireframes, mockups, and interactive prototypes that bring your vision to life.
+            We focus on user experience and ensure the design aligns perfectly with your brand identity and business objectives.
+          </p>
+        </div>
+      ),
+    },
+    {
+      title: "Development & Implementation",
+      content: (
+        <div>
+          <p className="text-neutral-800 dark:text-neutral-200 text-sm md:text-base font-normal mb-4 font-inter leading-relaxed">
+            Using modern technologies and best practices, we build your project with clean, scalable code.
+            Regular updates and testing ensure everything works perfectly across all devices and browsers, delivering exceptional performance.
+          </p>
+        </div>
+      ),
+    },
+    {
+      title: "Testing & Optimization",
+      content: (
+        <div>
+          <p className="text-neutral-800 dark:text-neutral-200 text-sm md:text-base font-normal mb-4 font-inter leading-relaxed">
+            Comprehensive testing ensures your project works flawlessly. We test functionality, performance,
+            security, and user experience across different devices and browsers before launch, guaranteeing a smooth user experience.
+          </p>
+        </div>
+      ),
+    },
+    {
+      title: "Launch & Support",
+      content: (
+        <div>
+          <p className="text-neutral-800 dark:text-neutral-200 text-sm md:text-base font-normal mb-4 font-inter leading-relaxed">
+            We handle the complete launch process and provide ongoing support to ensure your project continues
+            to perform optimally. Our relationship doesn't end at launch - we're here for the long term with maintenance and updates.
+          </p>
+        </div>
+      ),
+    },
+  ];
+
+  return (
+    <div className="w-full">
+      <Timeline data={processData} />
+    </div>
+  );
+}
+
 export default function Home() {
   return (
     <div className="min-h-screen">
@@ -705,13 +1006,36 @@ export default function Home() {
       {/* Portfolio Section */}
       <PortfolioSection />
 
-      {/* Temporary sections placeholder */}
-      <section className="py-12 bg-background">
+      {/* Process Section */}
+      <ProcessSection />
+
+      {/* About Section - Floating Team Constellation */}
+      <AboutSection />
+
+      {/* Contact Section - Placeholder */}
+      <section className="py-12 bg-gradient-to-br from-background to-accent/5">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-4 font-dm-sans">More Sections Coming Soon</h2>
-          <p className="text-muted-foreground font-inter">
-            Process • About • Contact
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 font-dm-sans bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+            Get In Touch
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto font-inter mb-8">
+            Ready to start your digital transformation? Let's discuss your project and bring your vision to life.
           </p>
+          <div className="bg-white dark:bg-neutral-900 rounded-2xl p-8 border border-neutral-200 dark:border-neutral-700 max-w-2xl mx-auto">
+            <div className="text-6xl mb-4">📞</div>
+            <h3 className="text-2xl font-bold mb-4 font-dm-sans">Coming Soon</h3>
+            <p className="text-muted-foreground font-inter mb-6">
+              We're building a comprehensive contact section with multiple ways to reach us and start your project.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button size="lg" className="font-semibold">
+                Start Your Project
+              </Button>
+              <Button variant="outline" size="lg">
+                Schedule a Call
+              </Button>
+            </div>
+          </div>
         </div>
       </section>
     </div>
