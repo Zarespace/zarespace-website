@@ -707,7 +707,16 @@ function AboutSection() {
     <section className="py-20 bg-gradient-to-br from-background to-accent/5 relative overflow-hidden">
       {/* Background floating shapes */}
       <div className="absolute inset-0 overflow-hidden">
-        {[...Array(8)].map((_, i) => (
+        {[
+          { left: 15, top: 20 },
+          { left: 85, top: 15 },
+          { left: 25, top: 80 },
+          { left: 75, top: 85 },
+          { left: 10, top: 60 },
+          { left: 90, top: 45 },
+          { left: 45, top: 10 },
+          { left: 55, top: 90 },
+        ].map((position, i) => (
           <motion.div
             key={i}
             className="absolute w-20 h-20 rounded-full bg-primary/5"
@@ -723,8 +732,8 @@ function AboutSection() {
               delay: i * 0.5,
             }}
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              left: `${position.left}%`,
+              top: `${position.top}%`,
             }}
           />
         ))}
@@ -818,12 +827,16 @@ function AboutSection() {
                     }}
                     dragElastic={0.1}
                     whileDrag={{ scale: 1.05, zIndex: 50 }}
-                    className={`w-56 h-56 bg-gradient-to-br ${member.color} p-1 shadow-xl rounded-md cursor-grab active:cursor-grabbing`}
+                    className="w-56 h-56 shadow-xl cursor-grab active:cursor-grabbing"
                     style={{
                       transformStyle: "preserve-3d",
                     }}
                   >
-                    <div className="w-full h-full rounded-lg bg-white dark:bg-neutral-800 overflow-hidden">
+                    <HoverBorderGradient
+                      as="div"
+                      containerClassName="w-full h-full rounded-2xl"
+                      className="w-full h-full bg-white dark:bg-neutral-800 p-0 rounded-2xl overflow-hidden"
+                    >
                       {/* Team member image */}
                       <div className="w-full h-3/4 relative overflow-hidden pointer-events-none">
                         <Image
@@ -864,7 +877,7 @@ function AboutSection() {
                           {member.role}
                         </span>
                       </div>
-                    </div>
+                    </HoverBorderGradient>
                   </motion.div>
                 </div>
               );
