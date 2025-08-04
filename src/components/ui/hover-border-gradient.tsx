@@ -60,7 +60,7 @@ export function HoverBorderGradient({
       }}
       onMouseLeave={() => setHovered(false)}
       className={cn(
-        "relative flex rounded-full border content-center bg-black/10 hover:bg-black/5 transition duration-500 dark:bg-white/10 dark:hover:bg-white/5 items-center flex-col flex-nowrap gap-10 h-min justify-center overflow-visible p-px decoration-clone w-fit shadow-lg hover:shadow-[0_0_30px_rgba(182,255,28,0.4)]",
+        "relative flex rounded-full border content-center bg-black/5 hover:bg-black/3 transition duration-500 dark:bg-white/5 dark:hover:bg-white/3 items-center flex-col flex-nowrap gap-10 h-min justify-center overflow-visible p-px decoration-clone w-fit shadow-md hover:shadow-[0_0_15px_rgba(182,255,28,0.2)]",
         containerClassName
       )}
       {...props}
@@ -82,7 +82,7 @@ export function HoverBorderGradient({
           position: "absolute",
           width: "100%",
           height: "100%",
-          boxShadow: "0 0 20px rgba(182, 255, 28, 0.5), inset 0 0 20px rgba(182, 255, 28, 0.3)",
+          boxShadow: "0 0 8px rgba(182, 255, 28, 0.3), inset 0 0 8px rgba(182, 255, 28, 0.2)",
         }}
         initial={{ background: movingMap[direction] }}
         animate={{

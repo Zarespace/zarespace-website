@@ -9,7 +9,7 @@ import { Carousel, Card } from "@/components/ui/apple-cards-carousel";
 import { Timeline } from "@/components/ui/timeline";
 import { DraggableCardBody, DraggableCardContainer } from "@/components/ui/draggable-card";
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
-import { Rocket, Users, DollarSign, Zap, X, ExternalLink, Calendar, User } from "lucide-react";
+import { Rocket, Users, DollarSign, Zap, X, ExternalLink, Calendar, User, MessageCircle, FileText, Phone, Mail, Clock, CheckCircle, Linkedin, Send, Instagram } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import Image from "next/image";
 
@@ -276,7 +276,7 @@ function ServicesSection() {
   ));
 
   return (
-    <section className="py-12 bg-background">
+    <section className="py-12 bg-gradient-to-b from-black via-black via-70% to-zinc-900">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-left mb-8">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 font-dm-sans bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
@@ -296,7 +296,7 @@ function PortfolioSection() {
   const [selectedProject, setSelectedProject] = useState<typeof portfolioData[0] | null>(null);
 
   return (
-    <section className="py-12 bg-background">
+    <section className="py-12 bg-gradient-to-b from-black via-black via-70% to-zinc-900">
       <div className="max-w-7xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -320,7 +320,7 @@ function PortfolioSection() {
               onClick={() => setSelectedProject(project)}
             >
               {/* Project Card */}
-              <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 aspect-[4/3] mb-4 group-hover:scale-105 transition-transform duration-300">
+              <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-zinc-900 aspect-[4/3] mb-4 group-hover:scale-105 transition-transform duration-300">
                 {/* Category Badge */}
                 <div className="absolute top-4 left-4 z-10">
                   <Badge variant="secondary" className="bg-primary/90 text-primary-foreground font-medium">
@@ -485,7 +485,7 @@ function PortfolioSection() {
 
 function WhyChooseUsSection() {
   return (
-    <section className="py-12 bg-gradient-to-br from-background to-accent/5">
+    <section className="py-12 bg-gradient-to-b from-black via-black via-70% to-zinc-900">
       <div className="max-w-7xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -704,7 +704,7 @@ function AboutSection() {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-background to-accent/5 relative overflow-hidden">
+    <section className="py-20 bg-gradient-to-b from-black via-black via-70% to-zinc-900 relative overflow-hidden">
       {/* Background floating shapes */}
       <div className="absolute inset-0 overflow-hidden">
         {[
@@ -887,13 +887,13 @@ function AboutSection() {
 
         {/* Team Description */}
         <div className="max-w-4xl mx-auto text-center">
-          <p className="text-lg text-muted-foreground font-inter leading-relaxed">
+          <p className="text-xl text-white dark:text-white font-inter leading-relaxed">
             We're a tight-knit team of digital innovators, each bringing unique expertise to every project.
             Founded in 2024, Zarespace Digital was born from a shared vision: to help businesses thrive in the digital age
             through cutting-edge technology and creative excellence. Our diverse backgrounds in development, design, and marketing
             create a perfect synergy that delivers exceptional results for our clients.
           </p>
-          <p className="text-lg text-muted-foreground font-inter leading-relaxed mt-4">
+          <p className="text-xl text-white dark:text-white font-inter leading-relaxed mt-4">
             What sets us apart isn't just our technical skills—it's our collaborative approach, attention to detail,
             and genuine passion for seeing our clients succeed. We believe in building lasting partnerships,
             not just completing projects.
@@ -904,10 +904,254 @@ function AboutSection() {
   );
 }
 
+function ContactSection() {
+  const [selectedPath, setSelectedPath] = useState<string | null>(null);
+
+  const contactPaths = [
+    {
+      id: 'quick-chat',
+      title: 'Quick Chat',
+      subtitle: 'Get instant answers',
+      icon: MessageCircle,
+      description: 'Jump on WhatsApp for immediate questions and quick project discussions.',
+      href: 'https://wa.me/1234567890' // Replace with your WhatsApp number
+    },
+    {
+      id: 'project-brief',
+      title: 'Project Brief',
+      subtitle: 'Tell us your vision',
+      icon: FileText,
+      description: 'Fill out our smart form to get a detailed proposal and timeline.',
+      href: 'mailto:hello@zarespace.digital?subject=Project Brief'
+    },
+    {
+      id: 'schedule-call',
+      title: 'Schedule Call',
+      subtitle: 'Book a meeting',
+      icon: Calendar,
+      description: 'Book a 30-minute discovery call to discuss your project in detail.',
+      href: 'https://calendly.com/zarespace' // Replace with your calendar link
+    }
+  ];
+
+  const socialLinks = [
+    {
+      name: 'LinkedIn',
+      icon: Linkedin,
+      href: 'https://linkedin.com/company/zarespace',
+      iconColor: 'text-[#0077B5]',
+      bgColor: 'bg-[#0077B5]/10',
+      hoverBgColor: 'hover:bg-[#0077B5]/20',
+      hoverTextColor: 'hover:text-[#0077B5]'
+    },
+    {
+      name: 'Telegram',
+      icon: Send,
+      href: 'https://t.me/zarespace',
+      iconColor: 'text-[#0088CC]',
+      bgColor: 'bg-[#0088CC]/10',
+      hoverBgColor: 'hover:bg-[#0088CC]/20',
+      hoverTextColor: 'hover:text-[#0088CC]'
+    },
+    {
+      name: 'Instagram',
+      icon: Instagram,
+      href: 'https://instagram.com/zarespace',
+      iconColor: 'text-[#E4405F]',
+      bgColor: 'bg-[#E4405F]/10',
+      hoverBgColor: 'hover:bg-[#E4405F]/20',
+      hoverTextColor: 'hover:text-[#E4405F]'
+    },
+    {
+      name: 'Email',
+      icon: Mail,
+      href: 'mailto:hello@zarespace.digital',
+      iconColor: 'text-[#34D399]',
+      bgColor: 'bg-[#34D399]/10',
+      hoverBgColor: 'hover:bg-[#34D399]/20',
+      hoverTextColor: 'hover:text-[#34D399]'
+    }
+  ];
+
+  const handlePathSelect = (pathId: string) => {
+    const path = contactPaths.find(p => p.id === pathId);
+    if (path?.href) {
+      window.open(path.href, '_blank');
+    }
+  };
+
+  return (
+    <section className="py-20 bg-gradient-to-b from-black via-black via-70% to-zinc-900 relative overflow-hidden rounded-b-3xl">
+      {/* Background floating shapes */}
+      <div className="absolute inset-0 overflow-hidden">
+        {[
+          { left: 10, top: 20 },
+          { left: 90, top: 15 },
+          { left: 20, top: 85 },
+          { left: 80, top: 80 },
+          { left: 5, top: 60 },
+          { left: 95, top: 40 },
+        ].map((position, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-16 h-16 rounded-full bg-primary/5"
+            animate={{
+              y: [0, -15, 0],
+              x: [0, 8, 0],
+              scale: [1, 1.1, 1],
+            }}
+            transition={{
+              duration: 4 + i,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: i * 0.7,
+            }}
+            style={{
+              left: `${position.left}%`,
+              top: `${position.top}%`,
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 relative z-10">
+        {/* Two-Column Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+
+          {/* Left Side - Get In Touch */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            className="space-y-8"
+          >
+            <div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 font-dm-sans bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+                Get In Touch
+              </h2>
+              <p className="text-xl text-muted-foreground font-inter leading-relaxed">
+                Connect with us through your preferred platform. We're always ready to discuss your next big idea.
+              </p>
+            </div>
+
+            {/* Social Icons */}
+            <div className="grid grid-cols-2 gap-6">
+              {socialLinks.map((social, index) => (
+                <motion.a
+                  key={social.name}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className={`group flex items-center space-x-4 p-6 rounded-2xl border border-neutral-200 dark:border-neutral-700 hover:border-primary/30 transition-all duration-300 hover:scale-105 ${social.hoverTextColor}`}
+                >
+                  <div className={`w-12 h-12 ${social.bgColor} ${social.hoverBgColor} rounded-xl flex items-center justify-center transition-colors duration-300`}>
+                    <social.icon className={`w-6 h-6 ${social.iconColor}`} />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold font-dm-sans group-hover:text-primary transition-colors">
+                      {social.name}
+                    </h3>
+                    <p className="text-sm text-muted-foreground">
+                      {social.name === 'Email' ? 'hello@zarespace.digital' : `@zarespace`}
+                    </p>
+                  </div>
+                </motion.a>
+              ))}
+            </div>
+
+            {/* Contact Info */}
+            <div className="space-y-4 pt-8 border-t border-neutral-200 dark:border-neutral-700">
+              <div className="flex items-center space-x-3">
+                <Clock className="w-5 h-5 text-primary" />
+                <div>
+                  <p className="font-medium">Response Time</p>
+                  <p className="text-sm text-muted-foreground">Within 2-4 hours during business days</p>
+                </div>
+              </div>
+              <div className="flex items-center space-x-3">
+                <Mail className="w-5 h-5 text-primary" />
+                <div>
+                  <p className="font-medium">Email</p>
+                  <p className="text-sm text-muted-foreground">hello@zarespace.digital</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Right Side - Ready to Get Started */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="space-y-8"
+          >
+            <div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 font-dm-sans bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+                Ready to Get Started?
+              </h2>
+              <p className="text-xl text-muted-foreground font-inter leading-relaxed">
+                Choose your preferred way to connect with us and start your digital transformation journey.
+              </p>
+            </div>
+
+            {/* Contact Options - Vertical Stack */}
+            <div className="space-y-6">
+              {contactPaths.map((path, index) => (
+                <motion.div
+                  key={path.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+                  className="group cursor-pointer"
+                  onClick={() => handlePathSelect(path.id)}
+                >
+                  <div className="flex items-center space-x-6 p-6 rounded-2xl border border-neutral-200 dark:border-neutral-700 hover:border-primary/50 transition-all duration-300 hover:scale-105">
+                    <div className="flex-shrink-0">
+                      <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
+                        <path.icon className="w-7 h-7 text-primary" />
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold mb-1 font-dm-sans group-hover:text-primary transition-colors">
+                        {path.title}
+                      </h3>
+                      <p className="text-primary font-medium text-sm mb-2">{path.subtitle}</p>
+                      <p className="text-muted-foreground font-inter text-sm leading-relaxed">
+                        {path.description}
+                      </p>
+                    </div>
+                    <div className="flex-shrink-0">
+                      <ExternalLink className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Bottom Note */}
+            <div className="text-center pt-8 border-t border-neutral-200 dark:border-neutral-700">
+              <p className="text-muted-foreground font-inter">
+                All consultations are free and confidential. Let's build something amazing together.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function ProcessSection() {
   const processData = [
     {
-      title: "Discovery & Planning",
+      title: (
+        <span>
+          Discovery & <span className="text-primary">Planning</span>
+        </span>
+      ),
       content: (
         <div>
           <p className="text-neutral-800 dark:text-neutral-200 text-sm md:text-base font-normal mb-4 font-inter leading-relaxed">
@@ -918,7 +1162,11 @@ function ProcessSection() {
       ),
     },
     {
-      title: "Design & Prototyping",
+      title: (
+        <span>
+          Design & <span className="text-primary">Prototyping</span>
+        </span>
+      ),
       content: (
         <div>
           <p className="text-neutral-800 dark:text-neutral-200 text-sm md:text-base font-normal mb-4 font-inter leading-relaxed">
@@ -929,7 +1177,11 @@ function ProcessSection() {
       ),
     },
     {
-      title: "Development & Implementation",
+      title: (
+        <span>
+          Development & <span className="text-primary">Implementation</span>
+        </span>
+      ),
       content: (
         <div>
           <p className="text-neutral-800 dark:text-neutral-200 text-sm md:text-base font-normal mb-4 font-inter leading-relaxed">
@@ -940,7 +1192,11 @@ function ProcessSection() {
       ),
     },
     {
-      title: "Testing & Optimization",
+      title: (
+        <span>
+          Testing & <span className="text-primary">Optimization</span>
+        </span>
+      ),
       content: (
         <div>
           <p className="text-neutral-800 dark:text-neutral-200 text-sm md:text-base font-normal mb-4 font-inter leading-relaxed">
@@ -951,7 +1207,11 @@ function ProcessSection() {
       ),
     },
     {
-      title: "Launch & Support",
+      title: (
+        <span>
+          Launch & <span className="text-primary">Support</span>
+        </span>
+      ),
       content: (
         <div>
           <p className="text-neutral-800 dark:text-neutral-200 text-sm md:text-base font-normal mb-4 font-inter leading-relaxed">
@@ -974,7 +1234,7 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section with Aurora Background */}
-      <AuroraBackground>
+      <AuroraBackground className="rounded-b-3xl">
         <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center px-4 pt-20">
           {/* Left Content */}
           <div className="dark:text-white text-slate-950 space-y-6">
@@ -1011,46 +1271,32 @@ export default function Home() {
       </AuroraBackground>
 
       {/* Services Section */}
-      <ServicesSection />
+      <div className="rounded-b-3xl overflow-hidden">
+        <ServicesSection />
+      </div>
 
       {/* Why Choose Us Section */}
-      <WhyChooseUsSection />
+      <div className="rounded-b-3xl overflow-hidden">
+        <WhyChooseUsSection />
+      </div>
 
       {/* Portfolio Section */}
-      <PortfolioSection />
+      <div className="rounded-b-3xl overflow-hidden">
+        <PortfolioSection />
+      </div>
 
       {/* Process Section */}
-      <ProcessSection />
+      <div className="rounded-b-3xl overflow-hidden">
+        <ProcessSection />
+      </div>
 
       {/* About Section - Floating Team Constellation */}
-      <AboutSection />
+      <div className="rounded-b-3xl overflow-hidden">
+        <AboutSection />
+      </div>
 
-      {/* Contact Section - Placeholder */}
-      <section className="py-12 bg-gradient-to-br from-background to-accent/5">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 font-dm-sans bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-            Get In Touch
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto font-inter mb-8">
-            Ready to start your digital transformation? Let's discuss your project and bring your vision to life.
-          </p>
-          <div className="bg-white dark:bg-neutral-900 rounded-2xl p-8 border border-neutral-200 dark:border-neutral-700 max-w-2xl mx-auto">
-            <div className="text-6xl mb-4">📞</div>
-            <h3 className="text-2xl font-bold mb-4 font-dm-sans">Coming Soon</h3>
-            <p className="text-muted-foreground font-inter mb-6">
-              We're building a comprehensive contact section with multiple ways to reach us and start your project.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="font-semibold">
-                Start Your Project
-              </Button>
-              <Button variant="outline" size="lg">
-                Schedule a Call
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Multi-Path Contact Hub */}
+      <ContactSection />
     </div>
   );
 }
