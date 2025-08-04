@@ -32,39 +32,40 @@ interface MockupProps {
 export function Interactive3DMockup({ className = "" }: MockupProps) {
   const [isHovered, setIsHovered] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  
+
   // Mouse tracking
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  
-  // Spring animations for smooth movement
-  const springConfig = { damping: 25, stiffness: 150 };
+
+  // Spring animations for smooth movement - Enhanced for smoother return
+  const springConfig = { damping: 20, stiffness: 100, restDelta: 0.001 };
   const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [8, -8]), springConfig);
   const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-8, 8]), springConfig);
-  
+
   // Handle mouse movement
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return;
-    
+
     const rect = containerRef.current.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
-    
+
     const x = (event.clientX - centerX) / (rect.width / 2);
     const y = (event.clientY - centerY) / (rect.height / 2);
-    
+
     mouseX.set(x);
     mouseY.set(y);
   };
-  
+
   const handleMouseLeave = () => {
     setIsHovered(false);
+    // Smoothly animate back to center position
     mouseX.set(0);
     mouseY.set(0);
   };
 
   return (
-    <div 
+    <div
       ref={containerRef}
       className={`relative w-full h-full flex items-center justify-center [perspective:800px] ${className}`}
       onMouseMove={handleMouseMove}
@@ -90,7 +91,7 @@ export function Interactive3DMockup({ className = "" }: MockupProps) {
       >
         {/* Lid - Exact Aceternity Implementation */}
         <Lid />
-        
+
         {/* Base area - Exact Aceternity Implementation */}
         <div className="relative -z-10 h-[22rem] w-[32rem] overflow-hidden rounded-2xl bg-gray-200 dark:bg-[#272729]">
           {/* above keyboard bar */}
@@ -117,7 +118,7 @@ export function Interactive3DMockup({ className = "" }: MockupProps) {
       <motion.div
         className="absolute inset-0 -z-10"
         animate={{
-          background: isHovered 
+          background: isHovered
             ? "radial-gradient(ellipse at center, rgba(182, 255, 28, 0.1) 0%, rgba(59, 130, 246, 0.06) 40%, transparent 70%)"
             : "radial-gradient(ellipse at center, rgba(182, 255, 28, 0.05) 0%, rgba(59, 130, 246, 0.03) 40%, transparent 60%)"
         }}
@@ -146,7 +147,7 @@ export const Lid = () => {
           className="absolute inset-0 rounded-lg bg-[#010101] overflow-hidden"
         >
           {/* Black Screen with Zarespace SVG Logo */}
-          <div 
+          <div
             className="absolute inset-2 bg-black rounded-md overflow-hidden shadow-inner"
             style={{
               transform: "perspective(800px) rotateX(-15deg) translateZ(2px)",
@@ -168,11 +169,11 @@ export const Lid = () => {
                       }`}
                     </style>
                   </defs>
-                  <path className="cls-1" d="M993.97,875.69l-50.98-101.27c-1.4-2.77-4.23-4.52-7.34-4.52l-219.69-15.83-42.19,133.95,312.86-.42c4.54,0,8.22-3.68,8.22-8.22h0c0-1.28-.3-2.55-.88-3.69Z"/>
-                  <path className="cls-1" d="M153.39,480.92l96.46-265.93c5.01-13.82,18.14-23.02,32.83-23.02h279.75c23.71,0,40.53,23.12,33.23,45.68l-86.03,265.93c-4.66,14.41-18.08,24.17-33.23,24.17H186.22c-24.23,0-41.09-24.06-32.83-46.83Z"/>
-                  <path className="cls-1" d="M546.53,497.39l62.53-172.38c3.25-8.96,11.76-14.92,21.28-14.92h181.33c15.37,0,26.27,14.99,21.54,29.61l-55.77,172.38c-3.02,9.34-11.72,15.67-21.54,15.67h-188.09c-15.7,0-26.64-15.6-21.28-30.36Z"/>
-                  <path className="cls-1" d="M86.52,739.54l62.53-172.38c3.25-8.96,11.76-14.92,21.28-14.92h181.33c15.37,0,26.27,14.99,21.54,29.61l-55.77,172.38c-3.02,9.34-11.72,15.67-21.54,15.67H107.81c-15.7,0-26.64-15.6-21.28-30.36Z"/>
-                  <path className="cls-1" d="M324.21,841.19l96.46-265.93c5.01-13.82,18.14-23.02,32.83-23.02h279.75c23.71,0,40.53,23.12,33.23,45.68l-2.48,7.67-91.37,282.43h-315.58c-24.23,0-41.09-24.06-32.83-46.83Z"/>
+                  <path className="cls-1" d="M993.97,875.69l-50.98-101.27c-1.4-2.77-4.23-4.52-7.34-4.52l-219.69-15.83-42.19,133.95,312.86-.42c4.54,0,8.22-3.68,8.22-8.22h0c0-1.28-.3-2.55-.88-3.69Z" />
+                  <path className="cls-1" d="M153.39,480.92l96.46-265.93c5.01-13.82,18.14-23.02,32.83-23.02h279.75c23.71,0,40.53,23.12,33.23,45.68l-86.03,265.93c-4.66,14.41-18.08,24.17-33.23,24.17H186.22c-24.23,0-41.09-24.06-32.83-46.83Z" />
+                  <path className="cls-1" d="M546.53,497.39l62.53-172.38c3.25-8.96,11.76-14.92,21.28-14.92h181.33c15.37,0,26.27,14.99,21.54,29.61l-55.77,172.38c-3.02,9.34-11.72,15.67-21.54,15.67h-188.09c-15.7,0-26.64-15.6-21.28-30.36Z" />
+                  <path className="cls-1" d="M86.52,739.54l62.53-172.38c3.25-8.96,11.76-14.92,21.28-14.92h181.33c15.37,0,26.27,14.99,21.54,29.61l-55.77,172.38c-3.02,9.34-11.72,15.67-21.54,15.67H107.81c-15.7,0-26.64-15.6-21.28-30.36Z" />
+                  <path className="cls-1" d="M324.21,841.19l96.46-265.93c5.01-13.82,18.14-23.02,32.83-23.02h279.75c23.71,0,40.53,23.12,33.23,45.68l-2.48,7.67-91.37,282.43h-315.58c-24.23,0-41.09-24.06-32.83-46.83Z" />
                 </svg>
               </div>
             </div>

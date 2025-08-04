@@ -92,7 +92,7 @@ export function HoverBorderGradient({
         }}
         transition={{ ease: "linear", duration: duration ?? 1 }}
       />
-      <div className="bg-black absolute z-1 flex-none inset-[2px] rounded-[100px]" />
+      <div className={cn("bg-black absolute z-1 flex-none inset-[2px] rounded-[100px]", containerClassName?.includes('rounded-2xl') ? 'rounded-2xl' : containerClassName?.includes('rounded-full') ? 'rounded-full' : 'rounded-[100px]')} />
     </Tag>
   );
 }

@@ -9,7 +9,7 @@ import { Carousel, Card } from "@/components/ui/apple-cards-carousel";
 import { Timeline } from "@/components/ui/timeline";
 import { DraggableCardBody, DraggableCardContainer } from "@/components/ui/draggable-card";
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
-import { Rocket, Users, DollarSign, Zap, X, ExternalLink, Calendar, User, MessageCircle, FileText, Phone, Mail, Clock, CheckCircle, Linkedin, Send, Instagram } from "lucide-react";
+import { Rocket, Users, DollarSign, Zap, X, ExternalLink, Calendar, User, MessageCircle, FileText, Phone, Mail, Clock, CheckCircle, Linkedin, Send, Twitter } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import Image from "next/image";
 
@@ -278,15 +278,28 @@ function ServicesSection() {
   return (
     <section className="py-12 bg-gradient-to-b from-black via-black via-70% to-zinc-900">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="text-left mb-8">
+        <motion.div 
+          className="text-left mb-8"
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: true, margin: "-100px" }}
+        >
           <h2 className="text-4xl md:text-5xl font-bold mb-4 font-dm-sans bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
             Our Services
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl font-inter">
             Comprehensive digital solutions designed to transform your business. Click on any service to learn more about what we offer.
           </p>
-        </div>
-        <Carousel items={cards} />
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, x: 100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
+          viewport={{ once: true, margin: "-50px" }}
+        >
+          <Carousel items={cards} />
+        </motion.div>
       </div>
     </section>
   );
@@ -299,23 +312,34 @@ function PortfolioSection() {
     <section className="py-12 bg-gradient-to-b from-black via-black via-70% to-zinc-900">
       <div className="max-w-7xl mx-auto px-4">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <motion.div 
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: true, margin: "-100px" }}
+        >
           <h2 className="text-4xl md:text-5xl font-bold mb-6 font-dm-sans bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
             Our Portfolio
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto font-inter">
             Showcasing our best work across web development, design, video, and marketing. Each project represents our commitment to excellence and innovation.
           </p>
-        </div>
+        </motion.div>
 
         {/* 3x2 Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {portfolioData.map((project, index) => (
             <motion.div
               key={project.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              initial={{ opacity: 0, x: 100 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ 
+                duration: 0.6, 
+                delay: index * 0.15,
+                ease: "easeOut" 
+              }}
+              viewport={{ once: true, margin: "-50px" }}
               className="group cursor-pointer"
               onClick={() => setSelectedProject(project)}
             >
@@ -705,39 +729,6 @@ function AboutSection() {
 
   return (
     <section className="py-20 bg-gradient-to-b from-black via-black via-70% to-zinc-900 relative overflow-hidden">
-      {/* Background floating shapes */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[
-          { left: 15, top: 20 },
-          { left: 85, top: 15 },
-          { left: 25, top: 80 },
-          { left: 75, top: 85 },
-          { left: 10, top: 60 },
-          { left: 90, top: 45 },
-          { left: 45, top: 10 },
-          { left: 55, top: 90 },
-        ].map((position, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-20 h-20 rounded-full bg-primary/5"
-            animate={{
-              y: [0, -20, 0],
-              x: [0, 10, 0],
-              scale: [1, 1.1, 1],
-            }}
-            transition={{
-              duration: 4 + i,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: i * 0.5,
-            }}
-            style={{
-              left: `${position.left}%`,
-              top: `${position.top}%`,
-            }}
-          />
-        ))}
-      </div>
 
       <div className="max-w-7xl mx-auto px-4 relative z-10">
         {/* Section Header */}
@@ -954,13 +945,13 @@ function ContactSection() {
       hoverTextColor: 'hover:text-[#0088CC]'
     },
     {
-      name: 'Instagram',
-      icon: Instagram,
-      href: 'https://instagram.com/zarespace',
-      iconColor: 'text-[#E4405F]',
-      bgColor: 'bg-[#E4405F]/10',
-      hoverBgColor: 'hover:bg-[#E4405F]/20',
-      hoverTextColor: 'hover:text-[#E4405F]'
+      name: 'X (Twitter)',
+      icon: Twitter,
+      href: 'https://x.com/zarespace',
+      iconColor: 'text-gray-600',
+      bgColor: 'bg-gray-600/10',
+      hoverBgColor: 'hover:bg-gray-600/20',
+      hoverTextColor: 'hover:text-gray-600'
     },
     {
       name: 'Email',
@@ -982,37 +973,6 @@ function ContactSection() {
 
   return (
     <section className="py-20 bg-gradient-to-b from-black via-black via-70% to-zinc-900 relative overflow-hidden rounded-b-3xl">
-      {/* Background floating shapes */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[
-          { left: 10, top: 20 },
-          { left: 90, top: 15 },
-          { left: 20, top: 85 },
-          { left: 80, top: 80 },
-          { left: 5, top: 60 },
-          { left: 95, top: 40 },
-        ].map((position, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-16 h-16 rounded-full bg-primary/5"
-            animate={{
-              y: [0, -15, 0],
-              x: [0, 8, 0],
-              scale: [1, 1.1, 1],
-            }}
-            transition={{
-              duration: 4 + i,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: i * 0.7,
-            }}
-            style={{
-              left: `${position.left}%`,
-              top: `${position.top}%`,
-            }}
-          />
-        ))}
-      </div>
 
       <div className="max-w-7xl mx-auto px-4 relative z-10">
         {/* Two-Column Layout */}
@@ -1020,9 +980,10 @@ function ContactSection() {
 
           {/* Left Side - Get In Touch */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
+            initial={{ opacity: 0, x: 100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-100px" }}
             className="space-y-8"
           >
             <div>
@@ -1037,28 +998,32 @@ function ContactSection() {
             {/* Social Icons */}
             <div className="grid grid-cols-2 gap-6">
               {socialLinks.map((social, index) => (
-                <motion.a
+                <motion.div
                   key={social.name}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className={`group flex items-center space-x-4 p-6 rounded-2xl border border-neutral-200 dark:border-neutral-700 hover:border-primary/30 transition-all duration-300 hover:scale-105 ${social.hoverTextColor}`}
+                  initial={{ opacity: 0, x: 80 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.2 + index * 0.1, ease: "easeOut" }}
+                  viewport={{ once: true, margin: "-50px" }}
                 >
-                  <div className={`w-12 h-12 ${social.bgColor} ${social.hoverBgColor} rounded-xl flex items-center justify-center transition-colors duration-300`}>
-                    <social.icon className={`w-6 h-6 ${social.iconColor}`} />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold font-dm-sans group-hover:text-primary transition-colors">
-                      {social.name}
-                    </h3>
-                    <p className="text-sm text-muted-foreground">
-                      {social.name === 'Email' ? 'hello@zarespace.digital' : `@zarespace`}
-                    </p>
-                  </div>
-                </motion.a>
+                  <a
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`group flex items-center justify-start space-x-4 p-6 rounded-full border border-neutral-200 dark:border-neutral-700 hover:border-primary/50 transition-all duration-300 hover:scale-105 cursor-pointer w-full ${social.hoverTextColor}`}
+                  >
+                    <div className={`w-12 h-12 ${social.bgColor} ${social.hoverBgColor} rounded-xl flex items-center justify-center transition-colors duration-300`}>
+                      <social.icon className={`w-6 h-6 ${social.iconColor}`} />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold font-dm-sans group-hover:text-primary transition-colors">
+                        {social.name}
+                      </h3>
+                      <p className="text-sm text-muted-foreground">
+                        {social.name === 'Email' ? 'hello@zarespace.digital' : `@zarespace`}
+                      </p>
+                    </div>
+                  </a>
+                </motion.div>
               ))}
             </div>
 
@@ -1083,9 +1048,10 @@ function ContactSection() {
 
           {/* Right Side - Ready to Get Started */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            initial={{ opacity: 0, x: 120 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-100px" }}
             className="space-y-8"
           >
             <div>
@@ -1102,13 +1068,18 @@ function ContactSection() {
               {contactPaths.map((path, index) => (
                 <motion.div
                   key={path.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+                  initial={{ opacity: 0, x: 100 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.5 + index * 0.15, ease: "easeOut" }}
+                  viewport={{ once: true, margin: "-50px" }}
                   className="group cursor-pointer"
                   onClick={() => handlePathSelect(path.id)}
                 >
-                  <div className="flex items-center space-x-6 p-6 rounded-2xl border border-neutral-200 dark:border-neutral-700 hover:border-primary/50 transition-all duration-300 hover:scale-105">
+                  <HoverBorderGradient
+                    containerClassName="rounded-full w-full"
+                    as="div"
+                    className="flex items-center space-x-6 p-6 bg-transparent transition-all duration-300 hover:scale-105 cursor-pointer rounded-full"
+                  >
                     <div className="flex-shrink-0">
                       <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
                         <path.icon className="w-7 h-7 text-primary" />
@@ -1126,7 +1097,7 @@ function ContactSection() {
                     <div className="flex-shrink-0">
                       <ExternalLink className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
                     </div>
-                  </div>
+                  </HoverBorderGradient>
                 </motion.div>
               ))}
             </div>
@@ -1237,36 +1208,74 @@ export default function Home() {
       <AuroraBackground className="rounded-b-3xl">
         <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center px-4 pt-20">
           {/* Left Content */}
-          <div className="dark:text-white text-slate-950 space-y-6">
-            <h1 className="text-5xl md:text-6xl font-bold leading-tight font-dm-sans">
+          <motion.div 
+            className="dark:text-white text-slate-950 space-y-6"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            <motion.h1 
+              className="text-5xl md:text-6xl font-bold leading-tight font-dm-sans"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            >
               Empowering Businesses,{" "}
               <span className="bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
                 Digitally.
               </span>
-            </h1>
-            <p className="text-xl dark:text-neutral-200 text-slate-700 leading-relaxed font-inter">
+            </motion.h1>
+            <motion.p 
+              className="text-xl dark:text-neutral-200 text-slate-700 leading-relaxed font-inter"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+            >
               We help startups and SMEs transform their digital presence with cutting-edge
               web development, design, video, and marketing solutions.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="bg-slate-950 dark:bg-white text-white dark:text-black hover:bg-slate-800 dark:hover:bg-gray-100 font-semibold">
+            </motion.p>
+            <motion.div 
+              className="flex flex-col sm:flex-row gap-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+            >
+              <HoverBorderGradient
+                containerClassName="rounded-full"
+                as="button"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold px-8 py-3 text-lg"
+              >
                 Start Your Project
-              </Button>
-              <Button variant="outline" size="lg" className="border-slate-950 dark:border-white text-slate-950 dark:text-white hover:bg-slate-950 hover:text-white dark:hover:bg-white dark:hover:text-slate-950">
+              </HoverBorderGradient>
+              <HoverBorderGradient
+                containerClassName="rounded-full"
+                as="button"
+                className="bg-transparent border border-slate-950 dark:border-white text-slate-950 dark:text-white hover:bg-slate-950 hover:text-white dark:hover:bg-white dark:hover:text-slate-950 font-semibold px-8 py-3 text-lg"
+              >
                 View Our Services
-              </Button>
-            </div>
-            <div className="pt-4">
+              </HoverBorderGradient>
+            </motion.div>
+            <motion.div 
+              className="pt-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
+            >
               <p className="text-sm dark:text-neutral-300 text-slate-600 font-inter">
                 Helping businesses grow since 2024
               </p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Right Visual - Interactive 3D Mockup */}
-          <div className="flex items-center justify-center h-96">
+          <motion.div 
+            className="flex items-center justify-center h-96"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+          >
             <Interactive3DMockup className="w-full h-full" />
-          </div>
+          </motion.div>
         </div>
       </AuroraBackground>
 

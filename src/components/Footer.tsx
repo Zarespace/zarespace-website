@@ -179,7 +179,7 @@ export default function Footer() {
                     <VelocityScroll
                         defaultVelocity={2}
                         numRows={2}
-                        className="text-xs text-gray-400 font-normal tracking-wide"
+                        className="text-xs text-gray-400 font-normal tracking-wide font-dm-sans"
                     >
                          Digital Solutions • Web Development • Graphics Design • Video Editing • Digital Marketing •
                     </VelocityScroll>
