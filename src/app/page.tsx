@@ -276,9 +276,9 @@ function ServicesSection() {
   ));
 
   return (
-    <section className="py-12 bg-gradient-to-b from-black via-black via-70% to-zinc-900">
+    <section className="py-12 bg-gradient-to-b from-white via-white via-70% to-zinc-200 dark:from-black dark:via-black dark:via-70% dark:to-zinc-900">
       <div className="max-w-7xl mx-auto px-4">
-        <motion.div 
+        <motion.div
           className="text-left mb-8"
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -309,10 +309,10 @@ function PortfolioSection() {
   const [selectedProject, setSelectedProject] = useState<typeof portfolioData[0] | null>(null);
 
   return (
-    <section className="py-12 bg-gradient-to-b from-black via-black via-70% to-zinc-900">
+    <section className="py-12 bg-gradient-to-b from-white via-white via-70% to-zinc-200 dark:from-black dark:via-black dark:via-70% dark:to-zinc-900">
       <div className="max-w-7xl mx-auto px-4">
         {/* Section Header */}
-        <motion.div 
+        <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -334,10 +334,10 @@ function PortfolioSection() {
               key={project.id}
               initial={{ opacity: 0, x: 100 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ 
-                duration: 0.6, 
+              transition={{
+                duration: 0.6,
                 delay: index * 0.15,
-                ease: "easeOut" 
+                ease: "easeOut"
               }}
               viewport={{ once: true, margin: "-50px" }}
               className="group cursor-pointer"
@@ -509,7 +509,7 @@ function PortfolioSection() {
 
 function WhyChooseUsSection() {
   return (
-    <section className="py-12 bg-gradient-to-b from-black via-black via-70% to-zinc-900">
+    <section className="py-12 bg-gradient-to-b from-white via-white via-70% to-zinc-200 dark:from-black dark:via-black dark:via-70% dark:to-zinc-900">
       <div className="max-w-7xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -728,7 +728,7 @@ function AboutSection() {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-black via-black via-70% to-zinc-900 relative overflow-hidden">
+    <section className="py-20 bg-gradient-to-b from-white via-white via-70% to-zinc-200 dark:from-black dark:via-black dark:via-70% dark:to-zinc-900 relative overflow-hidden">
 
       <div className="max-w-7xl mx-auto px-4 relative z-10">
         {/* Section Header */}
@@ -736,8 +736,8 @@ function AboutSection() {
           <h2 className="text-4xl md:text-5xl font-bold mb-6 font-dm-sans bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
             Meet Our Team
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto font-inter">
-            The passionate minds behind your digital transformation
+          <p className="text-xl max-w-3xl mx-auto font-inter" style={{ color: 'black' }}>
+            <span className="dark:text-white">The passionate minds behind your digital transformation</span>
           </p>
         </div>
 
@@ -878,13 +878,13 @@ function AboutSection() {
 
         {/* Team Description */}
         <div className="max-w-4xl mx-auto text-center">
-          <p className="text-xl text-white dark:text-white font-inter leading-relaxed">
+          <p className="text-xl text-black dark:text-white font-inter leading-relaxed">
             We're a tight-knit team of digital innovators, each bringing unique expertise to every project.
             Founded in 2024, Zarespace Digital was born from a shared vision: to help businesses thrive in the digital age
             through cutting-edge technology and creative excellence. Our diverse backgrounds in development, design, and marketing
             create a perfect synergy that delivers exceptional results for our clients.
           </p>
-          <p className="text-xl text-white dark:text-white font-inter leading-relaxed mt-4">
+          <p className="text-xl text-black dark:text-white font-inter leading-relaxed mt-4">
             What sets us apart isn't just our technical skills—it's our collaborative approach, attention to detail,
             and genuine passion for seeing our clients succeed. We believe in building lasting partnerships,
             not just completing projects.
@@ -972,7 +972,7 @@ function ContactSection() {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-b from-black via-black via-70% to-zinc-900 relative overflow-hidden rounded-b-3xl">
+    <section className="py-20 bg-gradient-to-b from-white via-white via-70% to-zinc-200 dark:from-black dark:via-black dark:via-70% dark:to-zinc-900 relative overflow-hidden rounded-b-3xl">
 
       <div className="max-w-7xl mx-auto px-4 relative z-10">
         {/* Two-Column Layout */}
@@ -1208,13 +1208,13 @@ export default function Home() {
       <AuroraBackground className="rounded-b-3xl">
         <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center px-4 pt-20">
           {/* Left Content */}
-          <motion.div 
+          <motion.div
             className="dark:text-white text-slate-950 space-y-6"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <motion.h1 
+            <motion.h1
               className="text-5xl md:text-6xl font-bold leading-tight font-dm-sans"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -1225,7 +1225,7 @@ export default function Home() {
                 Digitally.
               </span>
             </motion.h1>
-            <motion.p 
+            <motion.p
               className="text-xl dark:text-neutral-200 text-slate-700 leading-relaxed font-inter"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -1234,7 +1234,7 @@ export default function Home() {
               We help startups and SMEs transform their digital presence with cutting-edge
               web development, design, video, and marketing solutions.
             </motion.p>
-            <motion.div 
+            <motion.div
               className="flex flex-col sm:flex-row gap-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -1243,7 +1243,7 @@ export default function Home() {
               <HoverBorderGradient
                 containerClassName="rounded-full"
                 as="button"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold px-8 py-3 text-lg"
+                className="!bg-primary text-white dark:text-black hover:!bg-primary/90 font-semibold px-8 py-3 text-lg"
               >
                 Start Your Project
               </HoverBorderGradient>
@@ -1255,7 +1255,7 @@ export default function Home() {
                 View Our Services
               </HoverBorderGradient>
             </motion.div>
-            <motion.div 
+            <motion.div
               className="pt-4"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -1268,7 +1268,7 @@ export default function Home() {
           </motion.div>
 
           {/* Right Visual - Interactive 3D Mockup */}
-          <motion.div 
+          <motion.div
             className="flex items-center justify-center h-96"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}

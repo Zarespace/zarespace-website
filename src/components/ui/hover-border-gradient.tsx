@@ -67,7 +67,7 @@ export function HoverBorderGradient({
     >
       <div
         className={cn(
-          "w-auto text-white z-10 bg-black px-4 py-2 rounded-[inherit]",
+          "w-auto text-black dark:text-white z-10 bg-white dark:bg-black px-4 py-2 rounded-[inherit]",
           className
         )}
       >
@@ -92,7 +92,7 @@ export function HoverBorderGradient({
         }}
         transition={{ ease: "linear", duration: duration ?? 1 }}
       />
-      <div className={cn("bg-black absolute z-1 flex-none inset-[2px] rounded-[100px]", containerClassName?.includes('rounded-2xl') ? 'rounded-2xl' : containerClassName?.includes('rounded-full') ? 'rounded-full' : 'rounded-[100px]')} />
+      <div className={cn("bg-white dark:bg-black absolute z-1 flex-none inset-[2px] rounded-[100px]", containerClassName?.includes('rounded-2xl') ? 'rounded-2xl' : containerClassName?.includes('rounded-full') ? 'rounded-full' : 'rounded-[100px]')} />
     </Tag>
   );
 }
