@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
@@ -14,6 +15,7 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const { theme, resolvedTheme } = useTheme();
+  const pathname = usePathname();
 
   useEffect(() => {
     setMounted(true);
@@ -37,11 +39,19 @@ export default function Header() {
   }, []);
 
   const navLinks = [
+    { href: "/", label: "Home" },
     { href: "/services", label: "Services" },
     { href: "/projects", label: "Projects" },
     { href: "/pricing", label: "Pricing" },
     { href: "/resources", label: "Resources" },
   ];
+
+  const isActiveLink = (href: string) => {
+    if (href === "/") {
+      return pathname === "/";
+    }
+    return pathname.startsWith(href);
+  };
 
   return (
     <motion.header
@@ -88,10 +98,22 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`font-medium transition-colors duration-300 hover:text-primary ${isScrolled ? "text-foreground" : "text-slate-950 dark:text-white"
-                  }`}
+                className={`font-medium transition-colors duration-300 hover:text-primary relative ${
+                  isActiveLink(link.href) 
+                    ? "text-primary" 
+                    : isScrolled ? "text-foreground" : "text-slate-950 dark:text-white"
+                }`}
               >
                 {link.label}
+                {isActiveLink(link.href) && (
+                  <motion.div
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full"
+                    layoutId="activeLink"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.2 }}
+                  />
+                )}
               </Link>
             ))}
           </nav>
@@ -134,8 +156,11 @@ export default function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`font-medium transition-colors duration-300 hover:text-primary ${isScrolled ? "text-foreground" : "text-slate-950 dark:text-white"
-                    }`}
+                  className={`font-medium transition-colors duration-300 hover:text-primary ${
+                    isActiveLink(link.href) 
+                      ? "text-primary" 
+                      : isScrolled ? "text-foreground" : "text-slate-950 dark:text-white"
+                  }`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.label}

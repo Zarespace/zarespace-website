@@ -509,7 +509,7 @@ function PortfolioSection() {
 
 function WhyChooseUsSection() {
   return (
-    <section className="py-12 bg-gradient-to-b from-white via-white via-70% to-zinc-200 dark:from-black dark:via-black dark:via-70% dark:to-zinc-900">
+    <section className="py-12 bg-white dark:bg-black">
       <div className="max-w-7xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -728,7 +728,7 @@ function AboutSection() {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-white via-white via-70% to-zinc-200 dark:from-black dark:via-black dark:via-70% dark:to-zinc-900 relative overflow-hidden">
+    <section className="py-20 bg-white dark:bg-black relative overflow-hidden">
 
       <div className="max-w-7xl mx-auto px-4 relative z-10">
         {/* Section Header */}
@@ -929,7 +929,7 @@ function ContactSection() {
     {
       name: 'LinkedIn',
       icon: Linkedin,
-      href: 'https://linkedin.com/company/zarespace',
+      href: 'https://www.linkedin.com/company/zarespace-digital',
       iconColor: 'text-[#0077B5]',
       bgColor: 'bg-[#0077B5]/10',
       hoverBgColor: 'hover:bg-[#0077B5]/20',
