@@ -98,8 +98,8 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
           onScroll={checkScrollability}
         >
 
-          {/* Navigation arrows overlaid on top-right of cards */}
-          <div className="absolute top-16 right-8 md:top-24 md:right-12 flex gap-2 z-40">
+          {/* Navigation arrows overlaid on top-right of cards - Hidden on mobile */}
+          <div className="absolute top-16 right-8 md:top-24 md:right-12 gap-2 z-40 hidden md:flex">
             <button
               className="flex h-10 w-10 items-center justify-center rounded-full bg-white dark:bg-black shadow-lg disabled:opacity-50 hover:bg-white dark:hover:bg-black transition-all duration-200 hover:scale-105"
               onClick={scrollLeft}

@@ -9,7 +9,7 @@ import { Carousel, Card } from "@/components/ui/apple-cards-carousel";
 import { Timeline } from "@/components/ui/timeline";
 import { DraggableCardBody, DraggableCardContainer } from "@/components/ui/draggable-card";
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
-import { Rocket, Users, DollarSign, Zap, X, ExternalLink, Calendar, User, MessageCircle, FileText, Phone, Mail, Clock, CheckCircle, Linkedin, Send, Twitter } from "lucide-react";
+import { Rocket, Users, DollarSign, Zap, X, ExternalLink, Calendar, User, MessageCircle, FileText, Phone, Mail, Clock, CheckCircle, Linkedin, Send, Twitter, GripVertical } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import Image from "next/image";
 
@@ -278,6 +278,7 @@ function ServicesSection() {
   return (
     <section className="py-12 bg-gradient-to-b from-white via-white via-70% to-zinc-200 dark:from-black dark:via-black dark:via-70% dark:to-zinc-900">
       <div className="max-w-7xl mx-auto px-4">
+        {/* Header stays within normal padding */}
         <motion.div
           className="text-left mb-8"
           initial={{ opacity: 0, x: 50 }}
@@ -292,13 +293,18 @@ function ServicesSection() {
             Comprehensive digital solutions designed to transform your business. Click on any service to learn more about what we offer.
           </p>
         </motion.div>
+
+        {/* Carousel breaks out to screen edges on mobile */}
         <motion.div
+          className="-mx-4 md:mx-0"
           initial={{ opacity: 0, x: 100 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
           viewport={{ once: true, margin: "-50px" }}
         >
-          <Carousel items={cards} />
+          <div className="px-4 md:px-0">
+            <Carousel items={cards} />
+          </div>
         </motion.div>
       </div>
     </section>
@@ -327,7 +333,7 @@ function PortfolioSection() {
           </p>
         </motion.div>
 
-        {/* 3x2 Grid */}
+        {/* Portfolio Grid - 3 projects on mobile, all on desktop */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {portfolioData.map((project, index) => (
             <motion.div
@@ -340,7 +346,7 @@ function PortfolioSection() {
                 ease: "easeOut"
               }}
               viewport={{ once: true, margin: "-50px" }}
-              className="group cursor-pointer"
+              className={`group cursor-pointer ${index >= 3 ? 'hidden md:block' : ''}`}
               onClick={() => setSelectedProject(project)}
             >
               {/* Project Card */}
@@ -736,9 +742,17 @@ function AboutSection() {
           <h2 className="text-4xl md:text-5xl font-bold mb-6 font-dm-sans bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
             Meet Our Team
           </h2>
-          <p className="text-xl max-w-3xl mx-auto font-inter" style={{ color: 'black' }}>
+          <p className="text-xl max-w-3xl mx-auto font-inter mb-2" style={{ color: 'black' }}>
             <span className="dark:text-white">The passionate minds behind your digital transformation</span>
           </p>
+          <motion.p
+            className="text-sm text-gray-600 dark:text-gray-400 font-inter"
+            initial={{ opacity: 1 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 2, duration: 1 }}
+          >
+            💡 Click and drag team members around to explore
+          </motion.p>
         </div>
 
         {/* Floating Team Constellation */}
@@ -793,7 +807,8 @@ function AboutSection() {
           <DraggableCardContainer className="relative w-full h-full">
             {teamMembers.map((member, index) => {
               // Calculate constraints to keep cards within the constellation area
-              const cardSize = 224; // 56 * 4 (w-56 = 224px)
+              // Mobile: w-40 = 160px, Desktop: w-56 = 224px
+              const cardSize = typeof window !== 'undefined' && window.innerWidth < 768 ? 160 : 224;
               const containerWidth = 896; // approximate max-w-7xl container width
               const containerHeight = 500; // h-[500px]
               const margin = 50; // margin from edges
@@ -818,7 +833,8 @@ function AboutSection() {
                     }}
                     dragElastic={0.1}
                     whileDrag={{ scale: 1.05, zIndex: 50 }}
-                    className="w-56 h-56 shadow-xl cursor-grab active:cursor-grabbing"
+                    whileHover={{ scale: 1.02, y: -4 }}
+                    className="w-40 h-40 md:w-56 md:h-56 shadow-xl cursor-grab active:cursor-grabbing hover:shadow-2xl transition-shadow duration-300 group"
                     style={{
                       transformStyle: "preserve-3d",
                     }}
@@ -826,8 +842,14 @@ function AboutSection() {
                     <HoverBorderGradient
                       as="div"
                       containerClassName="w-full h-full rounded-2xl"
-                      className="w-full h-full bg-white dark:bg-neutral-800 p-0 rounded-2xl overflow-hidden"
+                      className="w-full h-full bg-white dark:bg-neutral-800 p-0 rounded-2xl overflow-hidden relative"
                     >
+                      {/* Drag Handle Icon */}
+                      <div className="absolute top-1.5 right-1.5 md:top-2 md:right-2 z-10 opacity-0 group-hover:opacity-60 transition-opacity duration-300">
+                        <div className="w-5 h-5 md:w-6 md:h-6 bg-black/20 dark:bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+                          <GripVertical className="w-2.5 h-2.5 md:w-3 md:h-3 text-white dark:text-black" />
+                        </div>
+                      </div>
                       {/* Team member image */}
                       <div className="w-full h-3/4 relative overflow-hidden pointer-events-none">
                         <Image
@@ -877,18 +899,51 @@ function AboutSection() {
         </div>
 
         {/* Team Description */}
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="text-xl text-black dark:text-white font-inter leading-relaxed">
-            We're a tight-knit team of digital innovators, each bringing unique expertise to every project.
-            Founded in 2024, Zarespace Digital was born from a shared vision: to help businesses thrive in the digital age
-            through cutting-edge technology and creative excellence. Our diverse backgrounds in development, design, and marketing
-            create a perfect synergy that delivers exceptional results for our clients.
-          </p>
-          <p className="text-xl text-black dark:text-white font-inter leading-relaxed mt-4">
-            What sets us apart isn't just our technical skills—it's our collaborative approach, attention to detail,
-            and genuine passion for seeing our clients succeed. We believe in building lasting partnerships,
-            not just completing projects.
-          </p>
+        <div className="max-w-6xl mx-auto">
+          {/* Mobile: Single column, Desktop: Two columns */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 text-center lg:text-left">
+
+            {/* Left Column */}
+            <div className="space-y-4">
+              <h3 className="text-2xl font-bold text-primary font-dm-sans mb-4">Our Story</h3>
+              <p className="text-lg text-black dark:text-white font-dm-sans leading-relaxed">
+                We're a <span className="font-semibold text-primary">tight-knit team</span> of digital innovators, each bringing unique expertise to every project.
+              </p>
+              <p className="text-lg text-black dark:text-white font-dm-sans leading-relaxed">
+                Founded in <span className="font-semibold text-primary">2024</span>, <span className="text-primary font-semibold">Zarespace Digital</span> was born from a shared vision: to help businesses thrive in the digital age through cutting-edge technology and creative excellence.
+              </p>
+              <p className="text-lg text-black dark:text-white font-dm-sans leading-relaxed">
+                Our <span className="font-semibold">diverse backgrounds</span> in development, design, and marketing create a perfect synergy that delivers exceptional results for our clients.
+              </p>
+            </div>
+
+            {/* Right Column */}
+            <div className="space-y-4">
+              <h3 className="text-2xl font-bold text-primary font-dm-sans mb-4">What Sets Us Apart</h3>
+              <p className="text-lg text-black dark:text-white font-dm-sans leading-relaxed">
+                What sets us apart isn't just our <span className="font-semibold">technical skills</span>—it's our collaborative approach, attention to detail, and genuine passion for seeing our clients succeed.
+              </p>
+              <p className="text-lg text-black dark:text-white font-dm-sans leading-relaxed">
+                We believe in building <span className="font-semibold text-primary">lasting partnerships</span>, not just completing projects.
+              </p>
+              <div className="pt-2">
+                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start text-sm">
+                  <div className="flex items-center justify-center lg:justify-start">
+                    <div className="w-2 h-2 bg-primary rounded-full mr-2"></div>
+                    <span className="text-black dark:text-white font-dm-sans">Founded 2024</span>
+                  </div>
+                  <div className="flex items-center justify-center lg:justify-start">
+                    <div className="w-2 h-2 bg-primary rounded-full mr-2"></div>
+                    <span className="text-black dark:text-white font-dm-sans">Multi-disciplinary Team</span>
+                  </div>
+                  <div className="flex items-center justify-center lg:justify-start">
+                    <div className="w-2 h-2 bg-primary rounded-full mr-2"></div>
+                    <span className="text-black dark:text-white font-dm-sans">Partnership Focused</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -904,8 +959,8 @@ function ContactSection() {
       title: 'Quick Chat',
       subtitle: 'Get instant answers',
       icon: MessageCircle,
-      description: 'Jump on WhatsApp for immediate questions and quick project discussions.',
-      href: 'https://wa.me/1234567890' // Replace with your WhatsApp number
+      description: 'Jump on Telegram for immediate questions and quick project discussions.',
+      href: 'https://t.me/zarespace' // Replace with your Telegram username
     },
     {
       id: 'project-brief',
@@ -996,7 +1051,7 @@ function ContactSection() {
             </div>
 
             {/* Social Icons */}
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-4 md:gap-6">
               {socialLinks.map((social, index) => (
                 <motion.div
                   key={social.name}
@@ -1009,16 +1064,16 @@ function ContactSection() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`group flex items-center justify-start space-x-4 p-6 rounded-full border border-neutral-200 dark:border-neutral-700 hover:border-primary/50 transition-all duration-300 hover:scale-105 cursor-pointer w-full ${social.hoverTextColor}`}
+                    className={`group flex items-center justify-start space-x-3 md:space-x-4 p-4 md:p-6 rounded-full border border-neutral-200 dark:border-neutral-700 hover:border-primary/50 transition-all duration-300 hover:scale-105 cursor-pointer w-full ${social.hoverTextColor}`}
                   >
-                    <div className={`w-12 h-12 ${social.bgColor} ${social.hoverBgColor} rounded-xl flex items-center justify-center transition-colors duration-300`}>
-                      <social.icon className={`w-6 h-6 ${social.iconColor}`} />
+                    <div className={`w-10 h-10 md:w-12 md:h-12 ${social.bgColor} ${social.hoverBgColor} rounded-xl flex items-center justify-center transition-colors duration-300`}>
+                      <social.icon className={`w-5 h-5 md:w-6 md:h-6 ${social.iconColor}`} />
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold font-dm-sans group-hover:text-primary transition-colors">
+                      <h3 className="text-base md:text-lg font-semibold font-dm-sans group-hover:text-primary transition-colors">
                         {social.name}
                       </h3>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-xs md:text-sm text-muted-foreground">
                         {social.name === 'Email' ? 'hello@zarespace.digital' : `@zarespace`}
                       </p>
                     </div>
@@ -1064,7 +1119,7 @@ function ContactSection() {
             </div>
 
             {/* Contact Options - Vertical Stack */}
-            <div className="space-y-6">
+            <div className="space-y-4 md:space-y-6">
               {contactPaths.map((path, index) => (
                 <motion.div
                   key={path.id}
@@ -1078,24 +1133,24 @@ function ContactSection() {
                   <HoverBorderGradient
                     containerClassName="rounded-full w-full"
                     as="div"
-                    className="flex items-center space-x-6 p-6 bg-transparent transition-all duration-300 hover:scale-105 cursor-pointer rounded-full"
+                    className="flex items-center space-x-4 md:space-x-6 p-4 md:p-6 bg-transparent transition-all duration-300 hover:scale-105 cursor-pointer rounded-full"
                   >
                     <div className="flex-shrink-0">
-                      <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
-                        <path.icon className="w-7 h-7 text-primary" />
+                      <div className="w-12 h-12 md:w-14 md:h-14 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
+                        <path.icon className="w-6 h-6 md:w-7 md:h-7 text-primary" />
                       </div>
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-xl font-bold mb-1 font-dm-sans group-hover:text-primary transition-colors">
+                      <h3 className="text-lg md:text-xl font-bold mb-1 font-dm-sans group-hover:text-primary transition-colors">
                         {path.title}
                       </h3>
-                      <p className="text-primary font-medium text-sm mb-2">{path.subtitle}</p>
-                      <p className="text-muted-foreground font-inter text-sm leading-relaxed">
+                      <p className="text-primary font-medium text-xs md:text-sm mb-1 md:mb-2">{path.subtitle}</p>
+                      <p className="text-muted-foreground font-inter text-xs md:text-sm leading-relaxed">
                         {path.description}
                       </p>
                     </div>
                     <div className="flex-shrink-0">
-                      <ExternalLink className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                      <ExternalLink className="w-4 h-4 md:w-5 md:h-5 text-muted-foreground group-hover:text-primary transition-colors" />
                     </div>
                   </HoverBorderGradient>
                 </motion.div>
@@ -1206,76 +1261,81 @@ export default function Home() {
     <div className="min-h-screen">
       {/* Hero Section with Aurora Background */}
       <AuroraBackground className="rounded-b-3xl">
-        <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center px-4 pt-20">
-          {/* Left Content */}
-          <motion.div
-            className="dark:text-white text-slate-950 space-y-6"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
-            <motion.h1
-              className="text-5xl md:text-6xl font-bold leading-tight font-dm-sans"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            >
-              Empowering Businesses,{" "}
-              <span className="bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
-                Digitally.
-              </span>
-            </motion.h1>
-            <motion.p
-              className="text-xl dark:text-neutral-200 text-slate-700 leading-relaxed font-inter"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-            >
-              We help startups and SMEs transform their digital presence with cutting-edge
-              web development, design, video, and marketing solutions.
-            </motion.p>
+        <div className="relative z-10 w-full mx-auto px-4 pt-16 pb-8 lg:pt-20 lg:max-w-7xl">
+          {/* Mobile-First Layout */}
+          <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center">
+            {/* Right Visual - Interactive 3D Mockup - Mobile First */}
             <motion.div
-              className="flex flex-col sm:flex-row gap-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+              className="flex items-center justify-center h-64 sm:h-80 lg:h-96 mb-6 lg:mb-0 lg:order-last"
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
             >
-              <HoverBorderGradient
-                containerClassName="rounded-full"
-                as="button"
-                className="!bg-primary text-white dark:text-black hover:!bg-primary/90 font-semibold px-8 py-3 text-lg"
-              >
-                Start Your Project
-              </HoverBorderGradient>
-              <HoverBorderGradient
-                containerClassName="rounded-full"
-                as="button"
-                className="bg-transparent border border-slate-950 dark:border-white text-slate-950 dark:text-white hover:bg-slate-950 hover:text-white dark:hover:bg-white dark:hover:text-slate-950 font-semibold px-8 py-3 text-lg"
-              >
-                View Our Services
-              </HoverBorderGradient>
+              <div className="w-full max-w-sm sm:max-w-md lg:max-w-none h-full flex items-center justify-center">
+                <Interactive3DMockup className="w-full h-full" />
+              </div>
             </motion.div>
-            <motion.div
-              className="pt-4"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
-            >
-              <p className="text-sm dark:text-neutral-300 text-slate-600 font-inter">
-                Helping businesses grow since 2024
-              </p>
-            </motion.div>
-          </motion.div>
 
-          {/* Right Visual - Interactive 3D Mockup */}
-          <motion.div
-            className="flex items-center justify-center h-96"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-          >
-            <Interactive3DMockup className="w-full h-full" />
-          </motion.div>
+            {/* Left Content */}
+            <motion.div
+              className="dark:text-white text-slate-950 space-y-4 lg:space-y-6 text-center lg:text-left w-full"
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
+              <motion.h1
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight font-dm-sans px-2"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+              >
+                Empowering Businesses,{" "}
+                <span className="bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
+                  Digitally.
+                </span>
+              </motion.h1>
+              <motion.p
+                className="text-base sm:text-lg lg:text-xl dark:text-neutral-200 text-slate-700 leading-relaxed font-inter max-w-2xl mx-auto lg:mx-0 px-2"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+              >
+                We help startups and SMEs transform their digital presence with cutting-edge
+                web development, design, video, and marketing solutions.
+              </motion.p>
+              <motion.div
+                className="flex flex-row gap-3 justify-center lg:justify-start px-2"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+              >
+                <HoverBorderGradient
+                  containerClassName="rounded-full flex-1 max-w-[160px]"
+                  as="button"
+                  className="!bg-primary text-white dark:text-black hover:!bg-primary/90 font-semibold px-4 py-3 text-sm w-full"
+                >
+                  Start Your Project
+                </HoverBorderGradient>
+                <HoverBorderGradient
+                  containerClassName="rounded-full flex-1 max-w-[160px]"
+                  as="button"
+                  className="bg-transparent border border-slate-950 dark:border-white text-slate-950 dark:text-white hover:bg-slate-950 hover:text-white dark:hover:bg-white dark:hover:text-slate-950 font-semibold px-4 py-3 text-sm w-full"
+                >
+                  View Our Services
+                </HoverBorderGradient>
+              </motion.div>
+              <motion.div
+                className="pt-2 lg:pt-4"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
+              >
+                <p className="text-xs sm:text-sm dark:text-neutral-300 text-slate-600 font-inter">
+                  Helping businesses grow since 2024
+                </p>
+              </motion.div>
+            </motion.div>
+          </div>
         </div>
       </AuroraBackground>
 

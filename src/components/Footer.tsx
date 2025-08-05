@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { VelocityScroll } from "@/components/magicui/scroll-based-velocity";
 import { useTheme } from "next-themes";
-import { Linkedin, Twitter, Instagram, Facebook, Mail, Phone } from "lucide-react";
+import { Linkedin, Twitter, Instagram, Facebook, Mail, Phone, Send } from "lucide-react";
 
 export default function Footer() {
     const currentYear = new Date().getFullYear();
@@ -39,10 +39,10 @@ export default function Footer() {
     ];
 
     const socialLinks = [
-        { href: "#", label: "LinkedIn", icon: Linkedin },
-        { href: "#", label: "Twitter", icon: Twitter },
+        { href: "https://www.linkedin.com/company/zarespace-digital", label: "LinkedIn", icon: Linkedin },
+        { href: "https://x.com/zarespace", label: "Twitter", icon: Twitter },
         { href: "#", label: "Instagram", icon: Instagram },
-        { href: "#", label: "Facebook", icon: Facebook },
+        { href: "https://t.me/zarespace", label: "Telegram", icon: Send },
     ];
 
     return (
@@ -181,7 +181,7 @@ export default function Footer() {
                         numRows={2}
                         className="text-xs text-gray-400 font-normal tracking-wide font-dm-sans"
                     >
-                         Digital Solutions • Web Development • Graphics Design • Video Editing • Digital Marketing •
+                        Digital Solutions • Web Development • Graphics Design • Video Editing • Digital Marketing •
                     </VelocityScroll>
                 </div>
             </div>
