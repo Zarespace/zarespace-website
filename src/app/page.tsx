@@ -1360,9 +1360,9 @@ export default function Home() {
       </div>
 
       {/* About Section - Floating Team Constellation */}
-      <div className="rounded-b-3xl overflow-hidden">
+      {/* <div className="rounded-b-3xl overflow-hidden">
         <AboutSection />
-      </div>
+      </div> */}
 
       {/* Multi-Path Contact Hub */}
       <ContactSection />
