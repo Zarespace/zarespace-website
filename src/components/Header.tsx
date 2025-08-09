@@ -43,7 +43,6 @@ export default function Header() {
     { href: "/services", label: "Services" },
     { href: "/projects", label: "Projects" },
     { href: "/pricing", label: "Pricing" },
-    { href: "/resources", label: "Resources" },
   ];
 
   const isActiveLink = (href: string) => {
