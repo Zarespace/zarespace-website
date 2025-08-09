@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { AnimatedThemeToggler } from "@/components/magicui/animated-theme-toggler";
 import { useTheme } from "next-themes";
 
 export default function Header() {
@@ -120,7 +120,7 @@ export default function Header() {
 
           {/* Theme Toggle, CTA Button & Mobile Menu */}
           <div className="flex items-center space-x-4">
-            <ThemeToggle />
+            <AnimatedThemeToggler />
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
