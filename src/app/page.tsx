@@ -7,9 +7,9 @@ import { AuroraBackground } from "@/components/ui/aurora-background";
 import { Interactive3DMockup } from "@/components/ui/interactive-3d-mockup";
 import { Carousel, Card } from "@/components/ui/apple-cards-carousel";
 import { Timeline } from "@/components/ui/timeline";
-import { DraggableCardContainer } from "@/components/ui/draggable-card";
+// Removed unused DraggableCardContainer import
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
-import { Rocket, Users, DollarSign, Zap, X, ExternalLink, Calendar, User, MessageCircle, FileText, Mail, Clock, Linkedin, Send, Twitter, GripVertical } from "lucide-react";
+import { Rocket, Users, DollarSign, Zap, X, ExternalLink, Calendar, User, MessageCircle, FileText, Mail, Clock, Linkedin, Send, Twitter } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import Image from "next/image";
 
@@ -900,7 +900,7 @@ function ContactSection() {
             {/* Bottom Note */}
             <div className="text-center pt-8 border-t border-neutral-200 dark:border-neutral-700">
               <p className="text-muted-foreground font-inter">
-                All consultations are free and confidential. Let's build something amazing together.
+                All consultations are free and confidential. Let&apos;s build something amazing together.
               </p>
             </div>
           </motion.div>
@@ -922,7 +922,7 @@ function ProcessSection() {
         <div>
           <p className="text-neutral-800 dark:text-neutral-200 text-sm md:text-base font-normal mb-4 font-inter leading-relaxed">
             We start by understanding your business goals, target audience, and project requirements.
-            This phase includes competitor analysis, market research, and defining the project scope to ensure we're aligned from day one.
+            This phase includes competitor analysis, market research, and defining the project scope to ensure we&apos;re aligned from day one.
           </p>
         </div>
       ),
@@ -982,7 +982,7 @@ function ProcessSection() {
         <div>
           <p className="text-neutral-800 dark:text-neutral-200 text-sm md:text-base font-normal mb-4 font-inter leading-relaxed">
             We handle the complete launch process and provide ongoing support to ensure your project continues
-            to perform optimally. Our relationship doesn't end at launch - we're here for the long term with maintenance and updates.
+            to perform optimally. Our relationship doesn&apos;t end at launch - we&apos;re here for the long term with maintenance and updates.
           </p>
         </div>
       ),
