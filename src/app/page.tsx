@@ -7,9 +7,9 @@ import { AuroraBackground } from "@/components/ui/aurora-background";
 import { Interactive3DMockup } from "@/components/ui/interactive-3d-mockup";
 import { Carousel, Card } from "@/components/ui/apple-cards-carousel";
 import { Timeline } from "@/components/ui/timeline";
-import { DraggableCardBody, DraggableCardContainer } from "@/components/ui/draggable-card";
+import { DraggableCardContainer } from "@/components/ui/draggable-card";
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
-import { Rocket, Users, DollarSign, Zap, X, ExternalLink, Calendar, User, MessageCircle, FileText, Phone, Mail, Clock, CheckCircle, Linkedin, Send, Twitter, GripVertical } from "lucide-react";
+import { Rocket, Users, DollarSign, Zap, X, ExternalLink, Calendar, User, MessageCircle, FileText, Mail, Clock, Linkedin, Send, Twitter, GripVertical } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import Image from "next/image";
 
@@ -105,7 +105,7 @@ const servicesData = [
         </p>
         <div className="grid grid-cols-2 gap-4 mt-8">
           <div className="bg-white dark:bg-neutral-900 p-4 rounded-xl">
-            <h4 className="font-semibold mb-2">What's Included:</h4>
+            <h4 className="font-semibold mb-2">What&apos;s Included:</h4>
             <ul className="text-sm space-y-1">
               <li>• Custom Website Development</li>
               <li>• E-commerce Solutions</li>
@@ -242,7 +242,7 @@ const servicesData = [
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
           <div className="bg-white dark:bg-neutral-900 p-6 rounded-xl">
-            <h4 className="font-semibold mb-3 text-lg">What You'll Find:</h4>
+            <h4 className="font-semibold mb-3 text-lg">What You&apos;ll Find:</h4>
             <ul className="text-sm space-y-2">
               <li>• Detailed service descriptions</li>
               <li>• Complete feature lists</li>
@@ -523,7 +523,7 @@ function WhyChooseUsSection() {
             Why Choose Zarespace Digital?
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto font-inter">
-            We're not just another agency. We're your digital growth partners, built for the modern business landscape.
+            We&apos;re not just another agency. We&apos;re your digital growth partners, built for the modern business landscape.
           </p>
         </div>
 
@@ -689,269 +689,9 @@ function WhyChooseUsSection() {
   );
 }
 
-function AboutSection() {
-  const teamMembers = [
-    {
-      id: 1,
-      name: "Fuad Getachew",
-      role: "Founder & CEO",
-      skills: ["Strategy", "Vision", "Leadership"],
-      image: "/team/fuad.jpg", // Placeholder - you can replace with actual images
-      bio: "Visionary leader with 2+ years in digital transformation",
-      color: "from-blue-400 to-blue-600",
-      position: { x: 20, y: 15 }
-    },
-    {
-      id: 2,
-      name: "Remedan Mohammedzeyn",
-      role: "Lead Developer",
-      skills: ["React", "Next.js", "TypeScript"],
-      image: "/team/developer.jpg",
-      bio: "Full-stack wizard who turns ideas into reality",
-      color: "from-green-400 to-green-600",
-      position: { x: 70, y: 25 }
-    },
-    {
-      id: 3,
-      name: "Abdellah Qadi",
-      role: "Creative Director",
-      skills: ["UI/UX", "Figma", "Branding"],
-      image: "/team/abde.jpg",
-      bio: "Design perfectionist with an eye for detail",
-      color: "from-purple-400 to-purple-600",
-      position: { x: 25, y: 65 }
-    },
-    {
-      id: 4,
-      name: "Soreti Gurmu",
-      role: "Marketing Lead",
-      skills: ["SEO", "Analytics", "Growth"],
-      image: "/team/marketer.jpg",
-      bio: "Growth hacker who drives results",
-      color: "from-pink-400 to-pink-600",
-      position: { x: 75, y: 70 }
-    }
-  ];
-
-  return (
-    <section className="py-20 bg-white dark:bg-black relative overflow-hidden">
-
-      <div className="max-w-7xl mx-auto px-4 relative z-10">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 font-dm-sans bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-            Meet Our Team
-          </h2>
-          <p className="text-xl max-w-3xl mx-auto font-inter mb-2" style={{ color: 'black' }}>
-            <span className="dark:text-white">The passionate minds behind your digital transformation</span>
-          </p>
-          <motion.p
-            className="text-sm text-gray-600 dark:text-gray-400 font-inter"
-            initial={{ opacity: 1 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 2, duration: 1 }}
-          >
-            💡 Click and drag team members around to explore
-          </motion.p>
-        </div>
-
-        {/* Floating Team Constellation */}
-        <div className="relative h-96 md:h-[500px] mb-16" id="constellation-container">
-          {/* Central Logo - Static (Behind cards) */}
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-0">
-            <div className="w-48 h-48 flex items-center justify-center opacity-30">
-              {/* Light mode logo */}
-              <div className="w-44 h-44 dark:hidden">
-                <svg viewBox="0 0 1080 1080" className="w-full h-full">
-                  <defs>
-                    <style>
-                      {`.cls-1 {
-                        fill: #b6ff1c;
-                        stroke: #231f20;
-                        stroke-miterlimit: 10;
-                        stroke-width: 12px;
-                      }`}
-                    </style>
-                  </defs>
-                  <path className="cls-1" d="M998.5,875.69l-50.98-101.27c-1.4-2.77-4.23-4.52-7.34-4.52l-219.69-15.83-42.19,133.95,312.86-.42c4.54,0,8.22-3.68,8.22-8.22h0c0-1.28-.3-2.55-.88-3.69Z" />
-                  <path className="cls-1" d="M157.92,480.92l96.46-265.93c5.01-13.82,18.14-23.02,32.83-23.02h279.75c23.71,0,40.53,23.12,33.23,45.68l-86.03,265.93c-4.66,14.41-18.08,24.17-33.23,24.17H190.75c-24.23,0-41.09-24.06-32.83-46.83Z" />
-                  <path className="cls-1" d="M551.05,497.39l62.53-172.38c3.25-8.96,11.76-14.92,21.28-14.92h181.33c15.37,0,26.27,14.99,21.54,29.61l-55.77,172.38c-3.02,9.34-11.72,15.67-21.54,15.67h-188.09c-15.7,0-26.64-15.6-21.28-30.36Z" />
-                  <path className="cls-1" d="M91.05,739.54l62.53-172.38c3.25-8.96,11.76-14.92,21.28-14.92h181.33c15.37,0,26.27,14.99,21.54,29.61l-55.77,172.38c-3.02,9.34-11.72,15.67-21.54,15.67H112.33c-15.7,0-26.64-15.6-21.28-30.36Z" />
-                  <path className="cls-1" d="M328.74,841.19l96.46-265.93c5.01-13.82,18.14-23.02,32.83-23.02h279.75c23.71,0,40.53,23.12,33.23,45.68l-2.48,7.67-91.37,282.43h-315.58c-24.23,0-41.09-24.06-32.83-46.83Z" />
-                </svg>
-              </div>
-              {/* Dark mode logo */}
-              <div className="w-44 h-44 hidden dark:block">
-                <svg viewBox="0 0 1080 1080" className="w-full h-full">
-                  <defs>
-                    <style>
-                      {`.cls-1 {
-                        fill: #b6ff1c;
-                        stroke: #fff;
-                        stroke-miterlimit: 10;
-                        stroke-width: 12px;
-                      }`}
-                    </style>
-                  </defs>
-                  <path className="cls-1" d="M993.97,875.69l-50.98-101.27c-1.4-2.77-4.23-4.52-7.34-4.52l-219.69-15.83-42.19,133.95,312.86-.42c4.54,0,8.22-3.68,8.22-8.22h0c0-1.28-.3-2.55-.88-3.69Z" />
-                  <path className="cls-1" d="M153.39,480.92l96.46-265.93c5.01-13.82,18.14-23.02,32.83-23.02h279.75c23.71,0,40.53,23.12,33.23,45.68l-86.03,265.93c-4.66,14.41-18.08,24.17-33.23,24.17H186.22c-24.23,0-41.09-24.06-32.83-46.83Z" />
-                  <path className="cls-1" d="M546.53,497.39l62.53-172.38c3.25-8.96,11.76-14.92,21.28-14.92h181.33c15.37,0,26.27,14.99,21.54,29.61l-55.77,172.38c-3.02,9.34-11.72,15.67-21.54,15.67h-188.09c-15.7,0-26.64-15.6-21.28-30.36Z" />
-                  <path className="cls-1" d="M86.52,739.54l62.53-172.38c3.25-8.96,11.76-14.92,21.28-14.92h181.33c15.37,0,26.27,14.99,21.54,29.61l-55.77,172.38c-3.02,9.34-11.72,15.67-21.54,15.67H107.81c-15.7,0-26.64-15.6-21.28-30.36Z" />
-                  <path className="cls-1" d="M324.21,841.19l96.46-265.93c5.01-13.82,18.14-23.02,32.83-23.02h279.75c23.71,0,40.53,23.12,33.23,45.68l-2.48,7.67-91.37,282.43h-315.58c-24.23,0-41.09-24.06-32.83-46.83Z" />
-                </svg>
-              </div>
-            </div>
-          </div>
-
-          {/* Team Member Draggable Cards */}
-          <DraggableCardContainer className="relative w-full h-full">
-            {teamMembers.map((member, index) => {
-              // Calculate constraints to keep cards within the constellation area
-              // Mobile: w-40 = 160px, Desktop: w-56 = 224px
-              const cardSize = typeof window !== 'undefined' && window.innerWidth < 768 ? 160 : 224;
-              const containerWidth = 896; // approximate max-w-7xl container width
-              const containerHeight = 500; // h-[500px]
-              const margin = 50; // margin from edges
-
-              return (
-                <div
-                  key={member.id}
-                  className="absolute"
-                  style={{
-                    left: `${member.position.x}%`,
-                    top: `${member.position.y}%`,
-                    transform: 'translate(-50%, -50%)',
-                  }}
-                >
-                  <motion.div
-                    drag
-                    dragConstraints={{
-                      left: -(containerWidth / 2) + margin + cardSize / 2,
-                      right: (containerWidth / 2) - margin - cardSize / 2,
-                      top: -(containerHeight / 2) + margin + cardSize / 2,
-                      bottom: (containerHeight / 2) - margin - cardSize / 2,
-                    }}
-                    dragElastic={0.1}
-                    whileDrag={{ scale: 1.05, zIndex: 50 }}
-                    whileHover={{ scale: 1.02, y: -4 }}
-                    className="w-40 h-40 md:w-56 md:h-56 shadow-xl cursor-grab active:cursor-grabbing hover:shadow-2xl transition-shadow duration-300 group"
-                    style={{
-                      transformStyle: "preserve-3d",
-                    }}
-                  >
-                    <HoverBorderGradient
-                      as="div"
-                      containerClassName="w-full h-full rounded-2xl"
-                      className="w-full h-full bg-white dark:bg-neutral-800 p-0 rounded-2xl overflow-hidden relative"
-                    >
-                      {/* Drag Handle Icon */}
-                      <div className="absolute top-1.5 right-1.5 md:top-2 md:right-2 z-10 opacity-0 group-hover:opacity-60 transition-opacity duration-300">
-                        <div className="w-5 h-5 md:w-6 md:h-6 bg-black/20 dark:bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
-                          <GripVertical className="w-2.5 h-2.5 md:w-3 md:h-3 text-white dark:text-black" />
-                        </div>
-                      </div>
-                      {/* Team member image */}
-                      <div className="w-full h-3/4 relative overflow-hidden pointer-events-none">
-                        <Image
-                          src={member.image}
-                          alt={member.name}
-                          fill
-                          className="object-cover pointer-events-none select-none"
-                          onError={(e) => {
-                            // Fallback to placeholder if image fails to load
-                            const target = e.target as HTMLImageElement;
-                            target.style.display = 'none';
-                            const parent = target.parentElement;
-                            if (parent) {
-                              parent.innerHTML = `
-                              <div class="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 flex items-center justify-center">
-                                <div class="text-center">
-                                  <div class="w-12 h-12 bg-gradient-to-br from-gray-400 to-gray-500 dark:from-gray-600 dark:to-gray-700 rounded-full mx-auto mb-2 flex items-center justify-center">
-                                    <span class="text-white text-lg font-bold">
-                                      ${member.name.split(' ').map((n: string) => n[0]).join('')}
-                                    </span>
-                                  </div>
-                                  <div class="text-sm text-gray-600 dark:text-gray-400 font-medium">
-                                    Photo
-                                  </div>
-                                </div>
-                              </div>
-                            `;
-                            }
-                          }}
-                        />
-                      </div>
-                      {/* Team member info at bottom */}
-                      <div className="h-1/4 flex flex-col items-center justify-center px-2 py-1 pointer-events-none select-none">
-                        <span className="text-sm font-bold text-center leading-tight mb-1">
-                          {member.name}
-                        </span>
-                        <span className="text-xs text-primary font-medium text-center">
-                          {member.role}
-                        </span>
-                      </div>
-                    </HoverBorderGradient>
-                  </motion.div>
-                </div>
-              );
-            })}
-          </DraggableCardContainer>
-        </div>
-
-        {/* Team Description */}
-        <div className="max-w-6xl mx-auto">
-          {/* Mobile: Single column, Desktop: Two columns */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 text-center lg:text-left">
-
-            {/* Left Column */}
-            <div className="space-y-4">
-              <h3 className="text-2xl font-bold text-primary font-dm-sans mb-4">Our Story</h3>
-              <p className="text-lg text-black dark:text-white font-dm-sans leading-relaxed">
-                We're a <span className="font-semibold text-primary">tight-knit team</span> of digital innovators, each bringing unique expertise to every project.
-              </p>
-              <p className="text-lg text-black dark:text-white font-dm-sans leading-relaxed">
-                Founded in <span className="font-semibold text-primary">2024</span>, <span className="text-primary font-semibold">Zarespace Digital</span> was born from a shared vision: to help businesses thrive in the digital age through cutting-edge technology and creative excellence.
-              </p>
-              <p className="text-lg text-black dark:text-white font-dm-sans leading-relaxed">
-                Our <span className="font-semibold">diverse backgrounds</span> in development, design, and marketing create a perfect synergy that delivers exceptional results for our clients.
-              </p>
-            </div>
-
-            {/* Right Column */}
-            <div className="space-y-4">
-              <h3 className="text-2xl font-bold text-primary font-dm-sans mb-4">What Sets Us Apart</h3>
-              <p className="text-lg text-black dark:text-white font-dm-sans leading-relaxed">
-                What sets us apart isn't just our <span className="font-semibold">technical skills</span>—it's our collaborative approach, attention to detail, and genuine passion for seeing our clients succeed.
-              </p>
-              <p className="text-lg text-black dark:text-white font-dm-sans leading-relaxed">
-                We believe in building <span className="font-semibold text-primary">lasting partnerships</span>, not just completing projects.
-              </p>
-              <div className="pt-2">
-                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start text-sm">
-                  <div className="flex items-center justify-center lg:justify-start">
-                    <div className="w-2 h-2 bg-primary rounded-full mr-2"></div>
-                    <span className="text-black dark:text-white font-dm-sans">Founded 2024</span>
-                  </div>
-                  <div className="flex items-center justify-center lg:justify-start">
-                    <div className="w-2 h-2 bg-primary rounded-full mr-2"></div>
-                    <span className="text-black dark:text-white font-dm-sans">Multi-disciplinary Team</span>
-                  </div>
-                  <div className="flex items-center justify-center lg:justify-start">
-                    <div className="w-2 h-2 bg-primary rounded-full mr-2"></div>
-                    <span className="text-black dark:text-white font-dm-sans">Partnership Focused</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
 
 function ContactSection() {
-  const [selectedPath, setSelectedPath] = useState<string | null>(null);
+
 
   const contactPaths = [
     {

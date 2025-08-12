@@ -13,7 +13,7 @@ import {
 } from "@tabler/icons-react";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "motion/react";
-import Image, { ImageProps } from "next/image";
+import { ImageProps } from "next/image";
 import { useOutsideClick } from "@/hooks/use-outside-click";
 import { JSX } from "react/jsx-runtime";
 
@@ -41,7 +41,7 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
   const carouselRef = React.useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = React.useState(false);
   const [canScrollRight, setCanScrollRight] = React.useState(true);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     if (carouselRef.current) {
@@ -166,7 +166,7 @@ export const Card = ({
 }) => {
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  const { onCardClose, currentIndex } = useContext(CarouselContext);
+  const { onCardClose } = useContext(CarouselContext);
 
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
@@ -277,13 +277,13 @@ export const BlurImage = ({
   src,
   className,
   alt,
-  fill,
+  fill: _fill,
   ...rest
 }: ImageProps) => {
-  const [isLoading, setLoading] = useState(true);
+  const [, setLoading] = useState(true);
 
   // Filter out Next.js specific props that shouldn't be passed to DOM
-  const { blurDataURL, placeholder, quality, priority, unoptimized, ...domProps } = rest;
+  const { blurDataURL: _, placeholder: __, quality: ___, priority: ____, unoptimized: _____, ...domProps } = rest;
 
   return (
     <img

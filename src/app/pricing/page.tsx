@@ -2,10 +2,8 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Switch } from "@/components/ui/switch";
-import { Check, Crown, Star, Rocket, Zap } from "lucide-react";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Check, Crown } from "lucide-react";
 import { motion } from "motion/react";
 
 const pricingPlans = [
@@ -80,7 +78,7 @@ export default function PricingPage() {
     <div className="min-h-screen pt-24 px-4 bg-white dark:bg-black">
       <div className="max-w-6xl mx-auto">
         {/* Header Section */}
-        <motion.div 
+        <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -95,26 +93,24 @@ export default function PricingPage() {
           <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-8 font-inter">
             Plans for every kind of business
           </p>
-          
+
           {/* Pricing Toggle */}
           <div className="inline-flex items-center bg-zinc-100 dark:bg-zinc-800 rounded-full p-1 mb-4">
             <button
               onClick={() => setIsYearly(true)}
-              className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
-                isYearly 
-                  ? 'bg-primary text-white shadow-sm' 
+              className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${isYearly
+                  ? 'bg-primary text-white shadow-sm'
                   : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200'
-              }`}
+                }`}
             >
               Yearly
             </button>
             <button
               onClick={() => setIsYearly(false)}
-              className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
-                !isYearly 
-                  ? 'bg-primary text-white shadow-sm' 
+              className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${!isYearly
+                  ? 'bg-primary text-white shadow-sm'
                   : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200'
-              }`}
+                }`}
             >
               Monthly
             </button>
@@ -144,7 +140,7 @@ export default function PricingPage() {
                   </div>
                 </div>
               )}
-              
+
               <Card className="h-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 shadow-lg hover:shadow-xl transition-shadow duration-300 relative overflow-hidden">
                 <CardHeader className="pb-4">
                   <CardTitle className="text-xl font-dm-sans text-zinc-900 dark:text-white">{plan.name}</CardTitle>
@@ -157,7 +153,7 @@ export default function PricingPage() {
                       <>
                         <div className="flex items-baseline">
                           <span className="text-3xl font-bold text-zinc-900 dark:text-white font-dm-sans">
-                            {(isYearly ? Math.floor(plan.yearlyPrice / 12) : plan.monthlyPrice).toLocaleString()} ETB
+                            {(isYearly ? Math.floor((plan.yearlyPrice || 0) / 12) : (plan.monthlyPrice || 0)).toLocaleString()} ETB
                           </span>
                           <span className="text-zinc-500 dark:text-zinc-400 ml-1">/mo</span>
                         </div>
@@ -184,22 +180,22 @@ export default function PricingPage() {
 
                 <CardFooter className="pt-0 mt-auto">
                   {plan.isCustom ? (
-                    <Button 
+                    <Button
                       className="w-full bg-zinc-900 dark:bg-white hover:bg-zinc-800 dark:hover:bg-zinc-100 text-white dark:text-black font-medium py-2.5"
                       size="lg"
                     >
                       Contact Sales
                     </Button>
                   ) : plan.popular ? (
-                    <Button 
+                    <Button
                       className="w-full bg-primary hover:bg-primary/90 text-white font-medium py-2.5"
                       size="lg"
                     >
                       Get Started
                     </Button>
                   ) : (
-                    <Button 
-                      variant="outline" 
+                    <Button
+                      variant="outline"
                       className="w-full border-zinc-300 dark:border-zinc-600 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800 font-medium py-2.5"
                       size="lg"
                     >
@@ -227,15 +223,15 @@ export default function PricingPage() {
               Turn your business ideas into professional websites that convert visitors into customers
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 className="bg-primary hover:bg-primary/90 text-white font-medium"
               >
                 Get Started Today
               </Button>
-              <Button 
-                size="lg" 
-                variant="outline" 
+              <Button
+                size="lg"
+                variant="outline"
                 className="border-zinc-300 dark:border-zinc-600 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800 font-medium"
               >
                 View Portfolio

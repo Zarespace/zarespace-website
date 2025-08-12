@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { CheckCircle, Code, Palette, Video, TrendingUp, Users, Clock, Award } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { CheckCircle, TrendingUp, Users, Clock, Award } from "lucide-react";
 
 const services = [
   {
@@ -150,7 +150,7 @@ export default function ServicesPage() {
                       <CardHeader>
                         <CardTitle className="flex items-center text-lg">
                           <CheckCircle className="w-5 h-5 text-primary mr-2" />
-                          What's Included
+                          What&apos;s Included
                         </CardTitle>
                       </CardHeader>
                       <CardContent>
@@ -245,7 +245,7 @@ export default function ServicesPage() {
         <div className="text-center mt-20 py-16 bg-gradient-to-r from-primary/5 to-primary/10 rounded-2xl">
           <h3 className="text-3xl font-bold mb-4">Ready to Transform Your Business?</h3>
           <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Let's discuss your project and create a custom solution that drives results. 
+            Let&apos;s discuss your project and create a custom solution that drives results. 
             Get a free consultation and project estimate today.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

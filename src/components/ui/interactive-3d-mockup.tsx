@@ -643,10 +643,4 @@ export const OptionKey = ({ className }: { className: string }) => {
   );
 };
 
-const ZarespaceLogo = () => {
-  return (
-    <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center">
-      <span className="text-white font-bold text-xl font-ttlakes">Z</span>
-    </div>
-  );
-};
+// Removed unused ZarespaceLogo component

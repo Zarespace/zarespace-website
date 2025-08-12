@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { VelocityScroll } from "@/components/magicui/scroll-based-velocity";
 import { useTheme } from "next-themes";
-import { Linkedin, Twitter, Instagram, Facebook, Mail, Phone, Send } from "lucide-react";
+import { Linkedin, Twitter, Instagram, Mail, Phone, Send } from "lucide-react";
 
 export default function Footer() {
     const currentYear = new Date().getFullYear();

@@ -1,4 +1,4 @@
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+// Removed unused Card imports
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink, GitBranch, Globe } from "lucide-react";
@@ -251,7 +251,7 @@ export default function ProjectsPage() {
         <div className="text-center mt-16 py-12 bg-gradient-to-r from-primary/5 to-secondary/5 rounded-2xl">
           <h3 className="text-2xl font-semibold mb-4">Ready to Start Your Project?</h3>
           <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-            Let's discuss how we can bring your vision to life with our expertise and innovative solutions.
+            Let&apos;s discuss how we can bring your vision to life with our expertise and innovative solutions.
           </p>
           <Button size="lg" className="rounded-full px-8">
             Start Your Project
