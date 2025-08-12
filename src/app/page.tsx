@@ -786,7 +786,7 @@ function ContactSection() {
                 Get In Touch
               </h2>
               <p className="text-xl text-muted-foreground font-inter leading-relaxed">
-                Connect with us through your preferred platform. We're always ready to discuss your next big idea.
+                Connect with us through your preferred platform. We&apos;re always ready to discuss your next big idea.
               </p>
             </div>
 
