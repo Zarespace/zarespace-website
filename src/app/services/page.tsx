@@ -40,50 +40,67 @@ interface Service {
   startingPrice: string;
 }
 
-// Technology icon mapping
+// Technology icon mapping using SVG files from public/icons and Lucide icons
 const getTechnologyIcon = (tech: string) => {
-  const iconMap: { [key: string]: React.ReactNode } = {
+  // SVG icons from public/icons folder
+  const svgIconMap: { [key: string]: string } = {
     // Web Development
-    "Next.js": <Code className="w-5 h-5" />,
-    "React": <Code className="w-5 h-5" />,
-    "TypeScript": <Code className="w-5 h-5" />,
-    "Node.js": <Database className="w-5 h-5" />,
-    "MongoDB": <Database className="w-5 h-5" />,
-    "PostgreSQL": <Database className="w-5 h-5" />,
-    "AWS": <Cloud className="w-5 h-5" />,
-    "Vercel": <Cloud className="w-5 h-5" />,
+    "Next.js": "/icons/next-js-svgrepo-com.svg",
+    "TypeScript": "/icons/typescript-icon-svgrepo-com.svg",
+    "Node.js": "/icons/node-js-svgrepo-com.svg",
+    "MongoDB": "/icons/mongodb-svgrepo-com.svg",
+    "Vercel": "/icons/vercel-svgrepo-com.svg",
     
     // Design
-    "Adobe Creative Suite": <Palette className="w-5 h-5" />,
-    "Figma": <Figma className="w-5 h-5" />,
-    "Sketch": <Palette className="w-5 h-5" />,
-    "Canva Pro": <Palette className="w-5 h-5" />,
-    "After Effects": <Video className="w-5 h-5" />,
-    "Illustrator": <Palette className="w-5 h-5" />,
-    "Photoshop": <Palette className="w-5 h-5" />,
-    "InDesign": <Palette className="w-5 h-5" />,
+    "After Effects": "/icons/adobe-after-effects-svgrepo-com.svg",
+    "Illustrator": "/icons/adobe-illustrator-svgrepo-com (1).svg",
+    "Photoshop": "/icons/adobe-photoshop-svgrepo-com.svg",
+    "Canva": "/icons/canva-svgrepo-com.svg",
     
     // Video Editing
-    "Adobe Premiere Pro": <Video className="w-5 h-5" />,
-    "DaVinci Resolve": <Video className="w-5 h-5" />,
-    "Final Cut Pro": <Video className="w-5 h-5" />,
-    "Motion": <Video className="w-5 h-5" />,
-    "Audition": <Music className="w-5 h-5" />,
-    "Cinema 4D": <Layers className="w-5 h-5" />,
-    "Blender": <Layers className="w-5 h-5" />,
+    "Adobe Premiere Pro": "/icons/adobe-premiere-svgrepo-com.svg",
+    "DaVinci Resolve": "/icons/DaVinci_Resolve_17_logo.svg",
     
     // Digital Marketing
-    "Google Ads": <Search className="w-5 h-5" />,
-    "Facebook Ads": <Smartphone className="w-5 h-5" />,
-    "Google Analytics": <BarChart3 className="w-5 h-5" />,
-    "SEMrush": <Search className="w-5 h-5" />,
-    "Mailchimp": <Mail className="w-5 h-5" />,
-    "Hootsuite": <Globe className="w-5 h-5" />,
-    "Canva": <Palette className="w-5 h-5" />,
-    "WordPress": <Monitor className="w-5 h-5" />
+    "Google Ads": "/icons/google-ads-svgrepo-com.svg",
+    "Google Analytics": "/icons/google-analytics-svgrepo-com.svg",
+    "WordPress": "/icons/wordpress-color-svgrepo-com.svg"
   };
   
-  return iconMap[tech] || <Zap className="w-5 h-5" />;
+  // Icons that need white background (typically black/monochrome icons)
+  const iconsNeedingWhiteBg = [
+    "Next.js", 
+    "Vercel", 
+    "After Effects", 
+    "Illustrator", 
+    "Adobe Premiere Pro"
+  ];
+  
+  // Lucide icons for specific technologies
+  const lucideIconMap: { [key: string]: React.ReactNode } = {
+    "Figma": <Figma className="w-8 h-8" />
+  };
+  
+  // Check for Lucide icon first
+  if (lucideIconMap[tech]) {
+    return lucideIconMap[tech];
+  }
+  
+  // Then check for SVG icon
+  const iconPath = svgIconMap[tech];
+  const needsWhiteBg = iconsNeedingWhiteBg.includes(tech);
+  
+  return iconPath ? (
+    <div className={`flex items-center justify-center ${needsWhiteBg ? 'w-12 h-12 bg-white rounded-3xl p-2' : ''}`}>
+      <Image 
+        src={iconPath} 
+        alt={tech} 
+        width={32} 
+        height={32} 
+        className={`object-contain ${needsWhiteBg ? 'w-8 h-8' : 'w-8 h-8'}`}
+      />
+    </div>
+  ) : null;
 };
 
 // Static Apple Card Component
@@ -137,7 +154,7 @@ const services = [
       "Content Management Systems",
       "API Integration"
     ],
-    technologies: ["Next.js", "React", "TypeScript", "Node.js", "MongoDB", "PostgreSQL", "AWS", "Vercel"],
+    technologies: ["Next.js", "TypeScript", "Node.js", "MongoDB", "Vercel"],
     process: [
       "Discovery & Planning",
       "Design & Prototyping", 
@@ -164,7 +181,7 @@ const services = [
       "Web Graphics",
       "Illustration Services"
     ],
-    technologies: ["Adobe Creative Suite", "Figma", "Sketch", "Canva Pro", "After Effects", "Illustrator", "Photoshop", "InDesign"],
+    technologies: ["Figma", "After Effects", "Illustrator", "Photoshop", "Canva"],
     process: [
       "Brand Research",
       "Concept Development",
@@ -191,7 +208,7 @@ const services = [
       "Color Correction",
       "Audio Enhancement"
     ],
-    technologies: ["Adobe Premiere Pro", "After Effects", "DaVinci Resolve", "Final Cut Pro", "Motion", "Audition", "Cinema 4D", "Blender"],
+    technologies: ["Adobe Premiere Pro", "After Effects", "DaVinci Resolve"],
     process: [
       "Content Planning",
       "Footage Review",
@@ -218,7 +235,7 @@ const services = [
       "Conversion Optimization",
       "Brand Strategy"
     ],
-    technologies: ["Google Ads", "Facebook Ads", "Google Analytics", "SEMrush", "Mailchimp", "Hootsuite", "Canva", "WordPress"],
+    technologies: ["Google Ads", "Google Analytics", "WordPress"],
     process: [
       "Market Analysis",
       "Strategy Development",
@@ -329,15 +346,18 @@ export default function ServicesPage() {
                   <div className="space-y-3">
                     <h4 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">Technologies We Use</h4>
                     <div className="flex flex-wrap gap-3">
-                      {service.technologies.slice(0, 8).map((tech, idx) => (
-                        <div 
-                          key={idx} 
-                          className="flex items-center justify-center w-12 h-12 bg-primary/10 text-primary rounded-xl hover:bg-primary/20 transition-colors duration-200 group"
-                          title={tech}
-                        >
-                          {getTechnologyIcon(tech)}
-                        </div>
-                      ))}
+                      {service.technologies.slice(0, 8).map((tech, idx) => {
+                        const icon = getTechnologyIcon(tech);
+                        return icon ? (
+                          <div 
+                            key={idx} 
+                            className="flex items-center justify-center w-16 h-16 hover:scale-110 transition-transform duration-200 group"
+                            title={tech}
+                          >
+                            {icon}
+                          </div>
+                        ) : null;
+                      })}
                     </div>
                   </div>
 
