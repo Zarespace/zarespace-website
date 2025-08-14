@@ -99,8 +99,8 @@ export default function PricingPage() {
             <button
               onClick={() => setIsYearly(true)}
               className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${isYearly
-                  ? 'bg-primary text-white shadow-sm'
-                  : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200'
+                ? 'bg-primary text-white shadow-sm'
+                : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200'
                 }`}
             >
               Yearly
@@ -108,8 +108,8 @@ export default function PricingPage() {
             <button
               onClick={() => setIsYearly(false)}
               className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${!isYearly
-                  ? 'bg-primary text-white shadow-sm'
-                  : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200'
+                ? 'bg-primary text-white shadow-sm'
+                : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200'
                 }`}
             >
               Monthly
