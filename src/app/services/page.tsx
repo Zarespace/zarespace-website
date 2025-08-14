@@ -3,12 +3,27 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { CheckCircle, TrendingUp, Users, Clock, Award } from "lucide-react";
+import { CheckCircle, Clock } from "lucide-react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 
+// Service type definition
+interface Service {
+  id: string;
+  title: string;
+  category: string;
+  icon: string;
+  imageSrc: string;
+  description: string;
+  longDescription: string;
+  features: string[];
+  technologies: string[];
+  process: string[];
+  startingPrice: string;
+}
+
 // Static Apple Card Component
-const StaticAppleCard = ({ service, className }: { service: any; className?: string }) => {
+const StaticAppleCard = ({ service, className }: { service: Service; className?: string }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
