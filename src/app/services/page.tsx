@@ -3,7 +3,25 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { CheckCircle, Clock } from "lucide-react";
+import { 
+  CheckCircle, 
+  Clock, 
+  Code, 
+  Database, 
+  Cloud, 
+  Palette, 
+  Figma, 
+  Video, 
+  Music, 
+  Search, 
+  Mail, 
+  BarChart3, 
+  Globe,
+  Smartphone,
+  Monitor,
+  Layers,
+  Zap
+} from "lucide-react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 
@@ -22,6 +40,52 @@ interface Service {
   startingPrice: string;
 }
 
+// Technology icon mapping
+const getTechnologyIcon = (tech: string) => {
+  const iconMap: { [key: string]: React.ReactNode } = {
+    // Web Development
+    "Next.js": <Code className="w-5 h-5" />,
+    "React": <Code className="w-5 h-5" />,
+    "TypeScript": <Code className="w-5 h-5" />,
+    "Node.js": <Database className="w-5 h-5" />,
+    "MongoDB": <Database className="w-5 h-5" />,
+    "PostgreSQL": <Database className="w-5 h-5" />,
+    "AWS": <Cloud className="w-5 h-5" />,
+    "Vercel": <Cloud className="w-5 h-5" />,
+    
+    // Design
+    "Adobe Creative Suite": <Palette className="w-5 h-5" />,
+    "Figma": <Figma className="w-5 h-5" />,
+    "Sketch": <Palette className="w-5 h-5" />,
+    "Canva Pro": <Palette className="w-5 h-5" />,
+    "After Effects": <Video className="w-5 h-5" />,
+    "Illustrator": <Palette className="w-5 h-5" />,
+    "Photoshop": <Palette className="w-5 h-5" />,
+    "InDesign": <Palette className="w-5 h-5" />,
+    
+    // Video Editing
+    "Adobe Premiere Pro": <Video className="w-5 h-5" />,
+    "DaVinci Resolve": <Video className="w-5 h-5" />,
+    "Final Cut Pro": <Video className="w-5 h-5" />,
+    "Motion": <Video className="w-5 h-5" />,
+    "Audition": <Music className="w-5 h-5" />,
+    "Cinema 4D": <Layers className="w-5 h-5" />,
+    "Blender": <Layers className="w-5 h-5" />,
+    
+    // Digital Marketing
+    "Google Ads": <Search className="w-5 h-5" />,
+    "Facebook Ads": <Smartphone className="w-5 h-5" />,
+    "Google Analytics": <BarChart3 className="w-5 h-5" />,
+    "SEMrush": <Search className="w-5 h-5" />,
+    "Mailchimp": <Mail className="w-5 h-5" />,
+    "Hootsuite": <Globe className="w-5 h-5" />,
+    "Canva": <Palette className="w-5 h-5" />,
+    "WordPress": <Monitor className="w-5 h-5" />
+  };
+  
+  return iconMap[tech] || <Zap className="w-5 h-5" />;
+};
+
 // Static Apple Card Component
 const StaticAppleCard = ({ service, className }: { service: Service; className?: string }) => {
   return (
@@ -36,22 +100,8 @@ const StaticAppleCard = ({ service, className }: { service: Service; className?:
       )}
       whileHover={{ y: -8, scale: 1.02 }}
     >
-      <div className="pointer-events-none absolute inset-x-0 top-0 z-30 h-full bg-gradient-to-b from-black/50 via-transparent to-transparent group-hover:from-black/70 transition-all duration-300" />
-      <div className="relative z-40 p-8 group-hover:translate-y-[-4px] transition-transform duration-300">
-        <motion.p
-          className="text-left font-sans text-sm font-medium text-white md:text-base group-hover:text-primary transition-colors duration-300"
-        >
-          {service.category || "Digital Solutions"}
-        </motion.p>
-        <motion.p
-          className="mt-2 max-w-xs text-left font-sans text-xl font-semibold [text-wrap:balance] text-white md:text-3xl group-hover:text-white transition-colors duration-300"
-        >
-          {service.title}
-        </motion.p>
-        <p className="mt-4 text-sm text-white/80 group-hover:text-white/90 transition-colors duration-300">
-          {service.description}
-        </p>
-      </div>
+      {/* Subtle overlay for better visual depth */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-30 h-full bg-gradient-to-b from-black/20 via-transparent to-black/30 group-hover:from-black/30 group-hover:to-black/40 transition-all duration-300" />
       {/* Background Image */}
       <Image
         src={service.imageSrc}
@@ -222,7 +272,6 @@ export default function ServicesPage() {
                       </div>
                       <div>
                         <h2 className="text-3xl font-bold">{service.title}</h2>
-                        <p className="text-primary font-semibold">{service.startingPrice}</p>
                       </div>
                     </div>
                     
@@ -279,14 +328,15 @@ export default function ServicesPage() {
                   {/* Technologies */}
                   <div className="space-y-3">
                     <h4 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">Technologies We Use</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {service.technologies.slice(0, 6).map((tech, idx) => (
-                        <span 
+                    <div className="flex flex-wrap gap-3">
+                      {service.technologies.slice(0, 8).map((tech, idx) => (
+                        <div 
                           key={idx} 
-                          className="px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-medium"
+                          className="flex items-center justify-center w-12 h-12 bg-primary/10 text-primary rounded-xl hover:bg-primary/20 transition-colors duration-200 group"
+                          title={tech}
                         >
-                          {tech}
-                        </span>
+                          {getTechnologyIcon(tech)}
+                        </div>
                       ))}
                     </div>
                   </div>
