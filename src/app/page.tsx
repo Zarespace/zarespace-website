@@ -1003,7 +1003,9 @@ export default function Home() {
       </div> */}
 
       {/* Multi-Path Contact Hub */}
-      <ContactSection />
+      <div id="contact">
+        <ContactSection />
+      </div>
     </div>
   );
 }
