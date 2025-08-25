@@ -125,9 +125,11 @@ export default function Header() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3, delay: 0.4 }}
             >
-              <Button className="hidden sm:flex bg-primary hover:bg-primary/90 text-primary-foreground">
-                Get Started
-              </Button>
+              <a href="#contact">
+                <Button className="hidden sm:flex bg-primary hover:bg-primary/90 text-primary-foreground">
+                  Get Started
+                </Button>
+              </a>
             </motion.div>
 
             {/* Mobile Menu Button */}
