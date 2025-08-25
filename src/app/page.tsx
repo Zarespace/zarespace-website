@@ -943,20 +943,24 @@ export default function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
               >
-                <HoverBorderGradient
-                  containerClassName="rounded-full flex-1 max-w-[170px]"
-                  as="button"
-                  className="!bg-primary text-white dark:text-black hover:!bg-primary/90 font-semibold px-6 py-3 text-sm w-full"
-                >
-                  Start Your Project
-                </HoverBorderGradient>
-                <HoverBorderGradient
-                  containerClassName="rounded-full flex-1 max-w-[170px]"
-                  as="button"
-                  className="bg-transparent border border-slate-950 dark:border-white text-slate-950 dark:text-white hover:bg-slate-950 hover:text-white dark:hover:bg-white dark:hover:text-slate-950 font-semibold px-6 py-3 text-sm w-full"
-                >
-                  View Our Services
-                </HoverBorderGradient>
+                <a href="#contact" className="w-full max-w-[170px]">
+                  <HoverBorderGradient
+                    containerClassName="rounded-full w-full"
+                    as="button"
+                    className="!bg-primary text-white dark:text-black hover:!bg-primary/90 font-semibold px-6 py-3 text-sm w-full"
+                  >
+                    Start Your Project
+                  </HoverBorderGradient>
+                </a>
+                <a href="/services" className="w-full max-w-[170px]">
+                  <HoverBorderGradient
+                    containerClassName="rounded-full w-full"
+                    as="button"
+                    className="bg-transparent border border-slate-950 dark:border-white text-slate-950 dark:text-white hover:bg-slate-950 hover:text-white dark:hover:bg-white dark:hover:text-slate-950 font-semibold px-6 py-3 text-sm w-full"
+                  >
+                    View Our Services
+                  </HoverBorderGradient>
+                </a>
               </motion.div>
               <motion.div
                 className="pt-2 lg:pt-4"
