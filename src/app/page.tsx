@@ -517,172 +517,68 @@ function WhyChooseUsSection() {
   return (
     <section className="py-12 bg-white dark:bg-black">
       <div className="max-w-7xl mx-auto px-4">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 font-dm-sans bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-            Why Choose Zarespace Digital?
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto font-inter">
-            We&apos;re not just another agency. We&apos;re your digital growth partners, built for the modern business landscape.
-          </p>
-        </div>
+        <div className="flex flex-col lg:flex-row gap-12 items-start">
+          {/* Left Side - Question */}
+          <div className="lg:w-5/12">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 font-dm-sans bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+              Why Choose Zarespace Digital?
+            </h2>
+            <p className="text-xl text-muted-foreground font-inter">
+              We&apos;re not just another agency. We&apos;re your digital growth partners, built for the modern business landscape.
+            </p>
+          </div>
 
-        {/* Clean Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
-          {/* Fast Delivery */}
-          <motion.div
-            className="text-center p-10"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-          >
-            <motion.div
-              className="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6"
-              animate={{
-                scale: [1, 1.05, 1],
-                rotate: [0, 3, -3, 0]
-              }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            >
-              <motion.div
-                animate={{
-                  rotate: [0, -15, 15, -10, 10, 0],
-                  scale: [1, 1.2, 0.9, 1.15, 1]
-                }}
-                transition={{
-                  duration: 2.5,
-                  repeat: Infinity,
-                  repeatDelay: 0.5,
-                  ease: "easeInOut"
-                }}
-              >
-                <Zap className="w-12 h-12 text-primary" />
-              </motion.div>
-            </motion.div>
-            <h3 className="text-2xl font-bold mb-3 font-dm-sans">Fast Delivery</h3>
-            <p className="text-lg text-muted-foreground font-inter">2-week average turnaround</p>
-          </motion.div>
+          {/* Vertical Divider - Only visible on lg screens and up */}
+          <div className="hidden lg:block h-96 w-px bg-gradient-to-b from-transparent via-gray-300 dark:via-gray-700 to-transparent mx-8"></div>
 
-          {/* Direct Communication */}
-          <motion.div
-            className="text-center p-10"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <motion.div
-              className="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6"
-              animate={{
-                scale: [1, 1.08, 1],
-                y: [0, -2, 0]
-              }}
-              transition={{
-                duration: 3.5,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            >
+          {/* Right Side - Reasons */}
+          <div className="lg:w-1/2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Fast Delivery */}
               <motion.div
-                animate={{
-                  y: [0, -8, 0, -5, 0],
-                  scale: [1, 1.1, 0.95, 1.08, 1],
-                  rotate: [0, 2, -2, 0]
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  repeatDelay: 0.8,
-                  ease: "easeInOut"
-                }}
+                className="text-center p-10"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
               >
-                <Users className="w-12 h-12 text-primary" />
+                <h3 className="text-2xl font-bold mb-3 font-dm-sans">Fast Delivery</h3>
+                <p className="text-lg text-muted-foreground font-inter">2-week average turnaround</p>
               </motion.div>
-            </motion.div>
-            <h3 className="text-2xl font-bold mb-3 font-dm-sans">Direct Communication</h3>
-            <p className="text-lg text-muted-foreground font-inter">Work directly with founders</p>
-          </motion.div>
 
-          {/* Modern Tech Stack */}
-          <motion.div
-            className="text-center p-10"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            <motion.div
-              className="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6"
-              animate={{
-                scale: [1, 1.06, 1],
-                rotate: [0, 5, -5, 0]
-              }}
-              transition={{
-                duration: 4.2,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            >
+              {/* Direct Communication */}
               <motion.div
-                animate={{
-                  rotate: [0, 20, -20, 15, -10, 0],
-                  y: [0, -6, 4, -4, 0],
-                  scale: [1, 1.15, 0.9, 1.1, 1]
-                }}
-                transition={{
-                  duration: 3.5,
-                  repeat: Infinity,
-                  repeatDelay: 0.3,
-                  ease: "easeInOut"
-                }}
+                className="text-center p-10"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
               >
-                <Rocket className="w-12 h-12 text-primary" />
+                <h3 className="text-2xl font-bold mb-3 font-dm-sans">Direct Communication</h3>
+                <p className="text-lg text-muted-foreground font-inter">Work directly with founders</p>
               </motion.div>
-            </motion.div>
-            <h3 className="text-2xl font-bold mb-3 font-dm-sans">Modern Tech Stack</h3>
-            <p className="text-lg text-muted-foreground font-inter">Latest tools, not legacy</p>
-          </motion.div>
 
-          {/* Transparent Pricing */}
-          <motion.div
-            className="text-center p-10"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            <motion.div
-              className="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6"
-              animate={{
-                scale: [1, 1.07, 1],
-                rotate: [0, -4, 4, 0]
-              }}
-              transition={{
-                duration: 3.8,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            >
+              {/* Modern Tech Stack */}
               <motion.div
-                animate={{
-                  scale: [1, 1.2, 0.85, 1.15, 1],
-                  rotate: [0, 8, -8, 5, -5, 0],
-                  y: [0, -2, 2, 0]
-                }}
-                transition={{
-                  duration: 2.8,
-                  repeat: Infinity,
-                  repeatDelay: 1.2,
-                  ease: "easeInOut"
-                }}
+                className="text-center p-10"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
               >
-                <DollarSign className="w-12 h-12 text-primary" />
+                <h3 className="text-2xl font-bold mb-3 font-dm-sans">Modern Tech Stack</h3>
+                <p className="text-lg text-muted-foreground font-inter">Latest tools, not legacy</p>
               </motion.div>
-            </motion.div>
-            <h3 className="text-2xl font-bold mb-3 font-dm-sans">Transparent Pricing</h3>
-            <p className="text-lg text-muted-foreground font-inter">No hidden fees or surprises</p>
-          </motion.div>
+
+              {/* Transparent Pricing */}
+              <motion.div
+                className="text-center p-10"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
+                <h3 className="text-2xl font-bold mb-3 font-dm-sans">Transparent Pricing</h3>
+                <p className="text-lg text-muted-foreground font-inter">No hidden fees or surprises</p>
+              </motion.div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -691,8 +587,6 @@ function WhyChooseUsSection() {
 
 
 function ContactSection() {
-
-
   const contactPaths = [
     {
       id: 'quick-chat',
