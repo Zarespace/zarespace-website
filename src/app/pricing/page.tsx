@@ -6,207 +6,67 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import { Check, Crown } from "lucide-react";
 import { motion } from "motion/react";
 
-const pricingPlans = [
-  {
-    id: "starter",
-    name: "Starter",
-    monthlyPrice: 15000,
-    yearlyPrice: 150000,
-    popular: false,
-    features: [
-      "Landing Page Design",
-      "Mobile Responsive",
-      "Basic SEO Setup",
-      "Contact Form",
-      "2 Revisions",
-      "1 Month Support"
-    ]
-  },
-  {
-    id: "professional",
-    name: "Pro",
-    monthlyPrice: 30000,
-    yearlyPrice: 300000,
-    popular: true,
-    features: [
-      "Everything from Starter",
-      "Multi-page Website",
-      "Custom Design",
-      "Advanced SEO",
-      "CMS Integration",
-      "5 Revisions",
-      "3 Months Support"
-    ]
-  },
-  {
-    id: "business",
-    name: "Business",
-    monthlyPrice: 50000,
-    yearlyPrice: 500000,
-    popular: false,
-    features: [
-      "Everything from Pro",
-      "E-commerce Ready",
-      "Custom Development",
-      "API Integrations",
-      "Unlimited Revisions",
-      "6 Months Support"
-    ]
-  },
-  {
-    id: "enterprise",
-    name: "Enterprise",
-    monthlyPrice: null,
-    yearlyPrice: null,
-    popular: false,
-    isCustom: true,
-    features: [
-      "Everything from Business",
-      "Custom Web Application",
-      "Dedicated Project Manager",
-      "Priority Support",
-      "Advanced Security",
-      "Custom Integrations"
-    ]
-  }
+const services = [
+  "Custom Website Development",
+  "E-commerce Solutions",
+  "Web Application Development",
+  "Mobile Responsive Design",
+  "SEO & Digital Marketing",
+  "UI/UX Design",
+  "API Integrations",
+  "Ongoing Support & Maintenance"
 ];
 
 export default function PricingPage() {
-  const [isYearly, setIsYearly] = useState(true);
 
   return (
     <div className="min-h-screen pt-24 px-4 bg-white dark:bg-black">
-      <div className="max-w-6xl mx-auto">
-        {/* Header Section */}
+      <div className="max-w-4xl mx-auto">
+        {/* Main Content */}
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 font-dm-sans text-black dark:text-white">
-            Digital Solutions without hassle,
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 font-dm-sans text-black dark:text-white">
+            Custom Web Solutions
           </h1>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 font-dm-sans text-black dark:text-white">
-            Leave development to Zarespace.
-          </h2>
-          <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-8 font-inter">
-            Plans for every kind of business
-          </p>
-
-          {/* Pricing Toggle */}
-          <div className="inline-flex items-center bg-zinc-100 dark:bg-zinc-800 rounded-full p-1 mb-4">
-            <button
-              onClick={() => setIsYearly(true)}
-              className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${isYearly
-                ? 'bg-primary text-white shadow-sm'
-                : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200'
-                }`}
-            >
-              Yearly
-            </button>
-            <button
-              onClick={() => setIsYearly(false)}
-              className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${!isYearly
-                ? 'bg-primary text-white shadow-sm'
-                : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200'
-                }`}
-            >
-              Monthly
-            </button>
-          </div>
-          {isYearly && (
-            <p className="text-zinc-500 dark:text-zinc-400 text-sm">
-              Save up to 20% by paying yearly
+          
+          <div className="bg-zinc-50 dark:bg-zinc-900 rounded-2xl p-8 mb-10 border border-zinc-200 dark:border-zinc-700">
+            <h2 className="text-2xl md:text-3xl font-bold mb-6 text-primary font-dm-sans">
+              Tailored Pricing for Your Project
+            </h2>
+            
+            <p className="text-lg text-zinc-600 dark:text-zinc-300 mb-8 font-inter">
+              We understand that every project is unique. Our pricing is based on the specific 
+              requirements, complexity, and scale of your project. Whether you need a simple 
+              website or a complex web application, we'll work with you to create a solution 
+              that fits your budget and business goals.
             </p>
-          )}
-        </motion.div>
-
-        {/* Pricing Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          {pricingPlans.map((plan, index) => (
-            <motion.div
-              key={plan.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="relative"
+            
+            <div className="bg-white dark:bg-zinc-800 rounded-xl p-6 shadow-sm mb-8">
+              <h3 className="text-xl font-bold mb-4 text-zinc-900 dark:text-white font-dm-sans">
+                What We Offer:
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
+                {services.map((service, index) => (
+                  <div key={index} className="flex items-start space-x-3">
+                    <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-zinc-700 dark:text-zinc-300 font-inter">{service}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            <Button 
+              size="lg" 
+              className="bg-primary hover:bg-primary/90 text-white font-medium py-6 px-8 text-lg"
             >
-              {plan.popular && (
-                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-10">
-                  <div className="bg-primary text-white px-4 py-1 rounded-full text-sm font-medium flex items-center">
-                    <Crown className="w-4 h-4 mr-1" />
-                    Popular choice
-                  </div>
-                </div>
-              )}
-
-              <Card className="h-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 shadow-lg hover:shadow-xl transition-shadow duration-300 relative overflow-hidden">
-                <CardHeader className="pb-4">
-                  <CardTitle className="text-xl font-dm-sans text-zinc-900 dark:text-white">{plan.name}</CardTitle>
-                  <div className="mt-4">
-                    {plan.isCustom ? (
-                      <div className="text-3xl font-bold text-zinc-900 dark:text-white font-dm-sans">
-                        Custom
-                      </div>
-                    ) : (
-                      <>
-                        <div className="flex items-baseline">
-                          <span className="text-3xl font-bold text-zinc-900 dark:text-white font-dm-sans">
-                            {(isYearly ? Math.floor((plan.yearlyPrice || 0) / 12) : (plan.monthlyPrice || 0)).toLocaleString()} ETB
-                          </span>
-                          <span className="text-zinc-500 dark:text-zinc-400 ml-1">/mo</span>
-                        </div>
-                        {isYearly && (
-                          <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">
-                            Billed yearly
-                          </p>
-                        )}
-                      </>
-                    )}
-                  </div>
-                </CardHeader>
-
-                <CardContent className="pb-6">
-                  <div className="space-y-3">
-                    {plan.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-start space-x-3">
-                        <Check className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                        <span className="text-sm text-zinc-600 dark:text-zinc-300 font-inter">{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-
-                <CardFooter className="pt-0 mt-auto">
-                  {plan.isCustom ? (
-                    <Button
-                      className="w-full bg-zinc-900 dark:bg-white hover:bg-zinc-800 dark:hover:bg-zinc-100 text-white dark:text-black font-medium py-2.5"
-                      size="lg"
-                    >
-                      Contact Sales
-                    </Button>
-                  ) : plan.popular ? (
-                    <Button
-                      className="w-full bg-primary hover:bg-primary/90 text-white font-medium py-2.5"
-                      size="lg"
-                    >
-                      Get Started
-                    </Button>
-                  ) : (
-                    <Button
-                      variant="outline"
-                      className="w-full border-zinc-300 dark:border-zinc-600 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800 font-medium py-2.5"
-                      size="lg"
-                    >
-                      Get Quote
-                    </Button>
-                  )}
-                </CardFooter>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
+              Get Your Custom Quote
+            </Button>
+          </div>
+        </motion.div>
 
         {/* Bottom Section */}
         <motion.div
