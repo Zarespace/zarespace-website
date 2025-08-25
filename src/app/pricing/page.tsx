@@ -41,7 +41,7 @@ export default function PricingPage() {
             <p className="text-lg text-zinc-600 dark:text-zinc-300 mb-8 font-inter">
               We understand that every project is unique. Our pricing is based on the specific 
               requirements, complexity, and scale of your project. Whether you need a simple 
-              website or a complex web application, we'll work with you to create a solution 
+              website or a complex web application, we&apos;ll work with you to create a solution 
               that fits your budget and business goals.
             </p>
             
