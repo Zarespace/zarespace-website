@@ -7,6 +7,7 @@ import { AuroraBackground } from "@/components/ui/aurora-background";
 import { Interactive3DMockup } from "@/components/ui/interactive-3d-mockup";
 import { Carousel, Card } from "@/components/ui/apple-cards-carousel";
 import { Timeline } from "@/components/ui/timeline";
+import { Metadata } from "next";
 // Removed unused DraggableCardContainer import
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 import { Rocket, Users, DollarSign, Zap, X, ExternalLink, Calendar, User, MessageCircle, FileText, Mail, Clock, Linkedin, Send, Twitter } from "lucide-react";
@@ -888,6 +889,35 @@ function ProcessSection() {
       <Timeline data={processData} />
     </div>
   );
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: "Zarespace Digital | Leading Digital Solutions & Web Development Services",
+    description: "Top digital agency offering web development, graphics design, video editing, and digital marketing. Transform your business with cutting-edge digital solutions.",
+    keywords: "digital agency, web development, graphics design, video editing, digital marketing, digital solutions, Ethiopia",
+    openGraph: {
+      title: "Zarespace Digital | Leading Digital Solutions & Web Development Services",
+      description: "Top digital agency offering web development, graphics design, video editing, and digital marketing. Transform your business with cutting-edge digital solutions.",
+      url: "https://zarespace.digital",
+      siteName: "Zarespace Digital",
+      images: [
+        {
+          url: "/og-image.jpg",
+          width: 1200,
+          height: 630,
+          alt: "Zarespace Digital",
+        },
+      ],
+      locale: "en_US",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Zarespace Digital | Leading Digital Solutions & Web Development Services",
+      description: "Top digital agency offering web development, graphics design, video editing, and digital marketing.",
+    },
+  };
 }
 
 export default function Home() {
