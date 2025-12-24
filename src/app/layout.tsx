@@ -14,17 +14,22 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Zarespace Digital | Leading Digital Solutions & Web Development Services",
-    template: "%s | Zarespace Digital"
+    default:
+      "Zarespace Digital | Leading Digital Solutions & Web Development Services",
+    template: "%s | Zarespace Digital",
   },
-  description: "Top digital agency offering web development, graphics design, video editing, and digital marketing. Transform your business with cutting-edge digital solutions.",
-  keywords: "digital agency, web development, graphics design, video editing, digital marketing, digital solutions, Ethiopia",
+  description:
+    "Top digital agency offering web development, graphics design, video editing, and digital marketing. Transform your business with cutting-edge digital solutions.",
+  keywords:
+    "digital agency, web development, graphics design, video editing, digital marketing, digital solutions, Ethiopia",
   authors: [{ name: "Zarespace Digital" }],
   creator: "Zarespace Digital",
   publisher: "Zarespace Digital",
   openGraph: {
-    title: "Zarespace Digital | Leading Digital Solutions & Web Development Services",
-    description: "Top digital agency offering web development, graphics design, video editing, and digital marketing. Transform your business with cutting-edge digital solutions.",
+    title:
+      "Zarespace Digital | Leading Digital Solutions & Web Development Services",
+    description:
+      "Top digital agency offering web development, graphics design, video editing, and digital marketing. Transform your business with cutting-edge digital solutions.",
     url: "https://zarespace.digital",
     siteName: "Zarespace Digital",
     images: [
@@ -40,8 +45,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Zarespace Digital | Leading Digital Solutions & Web Development Services",
-    description: "Top digital agency offering web development, graphics design, video editing, and digital marketing.",
+    title:
+      "Zarespace Digital | Leading Digital Solutions & Web Development Services",
+    description:
+      "Top digital agency offering web development, graphics design, video editing, and digital marketing.",
   },
   alternates: {
     canonical: "https://zarespace.digital",
@@ -52,9 +59,9 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
 };
@@ -67,6 +74,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <meta
+          name="google-site-verification"
+          content="Lb4VuECbIusiaDj4Njnwr9fyjtkZghYGJJjTcGpgzt0"
+        />
         <link
           rel="preload"
           href="/fonts/TTLakes.ttf"
