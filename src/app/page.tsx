@@ -19,14 +19,14 @@ const portfolioData = [
   {
     id: 1,
     category: "Web Development",
-    name: "TechStart Landing Page",
-    image: "/stock/web_dev.jpg",
-    description: "A modern, responsive landing page for a tech startup featuring smooth animations and optimized performance.",
-    client: "TechStart Inc.",
-    year: "2024",
+    name: "ZareShop E-Commerce",
+    image: "/projects/zareshop.png",
+    description: "A modern, responsive e-commerce website built with modern technologies.",
+    client: "Zarespace Digital",
+    year: "2025",
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Motion"],
-    features: ["Responsive Design", "SEO Optimized", "Fast Loading", "Modern UI/UX"],
-    link: "#"
+    features: ["Responsive Design", "Fast Loading", "Modern UI/UX"],
+    link: "https://zareshop-gamma.vercel.app"
   },
   {
     id: 2,
